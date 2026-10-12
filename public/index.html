@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>40000 steps</title>
+<meta name="description" content="40000 steps — małe kroki dla mężczyzn, którzy funkcjonują, choć jest im ciężko. Wkrótce.">
+<meta property="og:title" content="40000 steps">
+<meta property="og:description" content="Małe kroki. Wkrótce.">
+<meta property="og:image" content="https://40000steps.com/assets/og.jpg">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0f1a2b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="/assets/hero-sm.jpg" media="(max-width: 700px)">
+<link rel="preload" as="image" href="/assets/hero.jpg" media="(min-width: 701px)">
+<style>
+  :root {
+    --ink: #f4f1ea;
+    --ink-dim: rgba(244, 241, 234, .72);
+    --night: #0f1a2b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    background: var(--night);
+    color: var(--ink);
+    font-family: "Courier Prime", "Courier New", monospace;
+    -webkit-font-smoothing: antialiased;
+  }
+  .stage {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: clamp(24px, 5vw, 56px) clamp(16px, 6vw, 72px);
+    background:
+      linear-gradient(180deg, rgba(10,18,32,.78) 0%, rgba(10,18,32,.4) 38%, rgba(10,18,32,.35) 62%, rgba(10,18,32,.72) 100%),
+      url("/assets/hero.jpg") center 14% / cover no-repeat;
+    background-color: var(--night);
+  }
+  @media (max-width: 700px) {
+    .stage {
+      background:
+        linear-gradient(180deg, rgba(10,18,32,.8) 0%, rgba(10,18,32,.35) 40%, rgba(10,18,32,.2) 60%, rgba(10,18,32,.75) 100%),
+        url("/assets/hero-sm.jpg") center 70% / cover no-repeat;
+      background-color: var(--night);
+    }
+  }
+  .mark {
+    font-weight: 700;
+    font-size: clamp(2.6rem, 9vw, 6.5rem);
+    letter-spacing: -.02em;
+    line-height: .95;
+  }
+  .mark span { display: block; font-weight: 400; font-size: .32em; letter-spacing: .32em; margin-top: .7em; color: var(--ink-dim); }
+  .line {
+    text-shadow: 0 1px 12px rgba(10,18,32,.55), 0 1px 2px rgba(10,18,32,.5);
+    font-size: clamp(1.1rem, 2.6vw, 1.6rem);
+    line-height: 1.5;
+    max-width: 30ch;
+    min-height: 3em;
+  }
+  .caret {
+    display: inline-block;
+    width: .55em;
+    height: 1.05em;
+    background: var(--ink);
+    vertical-align: -.15em;
+    margin-left: 2px;
+    animation: blink 1s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+  footer {
+    text-shadow: 0 1px 8px rgba(10,18,32,.6);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    justify-content: space-between;
+    font-size: .85rem;
+    color: var(--ink-dim);
+  }
+  footer a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(244,241,234,.4); }
+  footer a:hover { border-color: var(--ink); }
+  .help strong { color: var(--ink); font-weight: 700; }
+  @media (prefers-reduced-motion: reduce) { .caret { animation: none; } }
+</style>
+</head>
+<body>
+<main class="stage">
+  <h1 class="mark">40000<br>steps<span>WKRÓTCE</span></h1>
+
+  <p class="line" aria-live="polite">
+    <span id="type">Pierwsze kroki już postawione. Reszta jest w drodze.</span><span class="caret" aria-hidden="true"></span>
+  </p>
+
+  <footer>
+    <span class="help">Jeśli jest ci teraz bardzo ciężko: <strong>116 123</strong> · w nagłym zagrożeniu <strong>112</strong></span>
+    <a href="mailto:lukasz@40000steps.com">lukasz@40000steps.com</a>
+  </footer>
+</main>
+<script>
+  (function () {
+    var el = document.getElementById('type');
+    var text = el.textContent;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    el.textContent = '';
+    var i = 0;
+    function tick() {
+      if (i > text.length) return;
+      el.textContent = text.slice(0, i++);
+      var ch = text.charAt(i - 2);
+      setTimeout(tick, ch === '.' ? 650 : 55 + Math.random() * 70);
+    }
+    setTimeout(tick, 900);
+  })();
+</script>
+</body>
+</html>
