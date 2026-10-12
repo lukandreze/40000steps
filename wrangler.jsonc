@@ -6,5 +6,9 @@
     "directory": "./public",
     "not_found_handling": "404-page"
   },
-  "workers_dev": true
+  "workers_dev": true,
+  "routes": [
+    { "pattern": "40000steps.com", "custom_domain": true },
+    { "pattern": "www.40000steps.com", "custom_domain": true }
+  ]
 }
