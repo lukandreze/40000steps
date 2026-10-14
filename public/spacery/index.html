@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spacery — 40000 kroków</title>
+<meta name="description" content="Godzinny spacer, żeby się poznać, porozmawiać, pomilczeć albo po prostu pobyć we wzajemnym zrozumieniu. Sopot, czwartek 15.10, 18:00.">
+<link rel="canonical" href="https://40000steps.com/spacery/">
+<meta property="og:title" content="Spacer w Sopocie — czwartek 15.10, 18:00">
+<meta property="og:description" content="Godzina, żeby się poznać, porozmawiać, pomilczeć albo po prostu pobyć we wzajemnym zrozumieniu.">
+<meta property="og:image" content="https://40000steps.com/assets/img/beach-6341.jpg">
+<meta property="og:url" content="https://40000steps.com/spacery/">
+<meta name="theme-color" content="#0f1a2b">
+<style>
+  /* Fonts (self-hosted) */
+  @font-face { font-family: "Serif"; font-weight: 400; font-style: normal; font-display: swap; src: url(/assets/fonts/source-serif-4-latin-400-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+20AC, U+2122; }
+  @font-face { font-family: "Serif"; font-weight: 400; font-style: normal; font-display: swap; src: url(/assets/fonts/source-serif-4-latin-ext-400-normal.woff2) format("woff2"); unicode-range: U+0100-024F, U+1E00-1EFF; }
+  @font-face { font-family: "Serif"; font-weight: 400; font-style: italic; font-display: swap; src: url(/assets/fonts/source-serif-4-latin-400-italic.woff2) format("woff2"); unicode-range: U+0000-00FF, U+2000-206F; }
+  @font-face { font-family: "Serif"; font-weight: 400; font-style: italic; font-display: swap; src: url(/assets/fonts/source-serif-4-latin-ext-400-italic.woff2) format("woff2"); unicode-range: U+0100-024F; }
+  @font-face { font-family: "Serif"; font-weight: 600; font-style: normal; font-display: swap; src: url(/assets/fonts/source-serif-4-latin-600-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+2000-206F; }
+  @font-face { font-family: "Serif"; font-weight: 600; font-style: normal; font-display: swap; src: url(/assets/fonts/source-serif-4-latin-ext-600-normal.woff2) format("woff2"); unicode-range: U+0100-024F; }
+  @font-face { font-family: "Mono"; font-weight: 400; font-display: swap; src: url(/assets/fonts/courier-prime-latin-400-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+2000-206F; }
+  @font-face { font-family: "Mono"; font-weight: 400; font-display: swap; src: url(/assets/fonts/courier-prime-latin-ext-400-normal.woff2) format("woff2"); unicode-range: U+0100-024F; }
+  @font-face { font-family: "Mono"; font-weight: 700; font-display: swap; src: url(/assets/fonts/courier-prime-latin-700-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+2000-206F; }
+  @font-face { font-family: "Mono"; font-weight: 700; font-display: swap; src: url(/assets/fonts/courier-prime-latin-ext-700-normal.woff2) format("woff2"); unicode-range: U+0100-024F; }
+
+  :root { --sand: #efebe3; --sand-deep: #e3ddd1; --ink: #1d232b; --ink-soft: #4a525c; --night: #0f1a2b; --paper-on-night: #f4f1ea;
+    --mono: "Mono", "Courier New", monospace; --serif: "Serif", Georgia, serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--sand); color: var(--ink); font-family: var(--serif); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+
+  .bar { position: absolute; inset: 0 0 auto 0; z-index: 20; height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 clamp(16px, 4vw, 40px); color: var(--paper-on-night); }
+  .bar .wordmark { font-family: var(--mono); font-weight: 700; font-size: 15px; text-decoration: none; color: inherit; }
+
+  .hero { min-height: 72vh; min-height: 72svh; display: flex; flex-direction: column; justify-content: flex-end; color: var(--paper-on-night);
+    padding: 96px clamp(16px, 6vw, 72px) clamp(32px, 6vw, 64px);
+    background: linear-gradient(180deg, rgba(10,18,32,.6) 0%, rgba(10,18,32,.15) 40%, rgba(10,18,32,.75) 100%), url(/assets/img/beach-6341.jpg) center 40% / cover no-repeat var(--night); }
+  .hero h1 { font-family: var(--mono); font-weight: 700; font-size: clamp(3rem, 10vw, 7rem); line-height: .92; letter-spacing: -.02em; }
+  .hero .kicker { font-family: var(--mono); font-weight: 700; font-size: clamp(1rem, 1.9vw, 1.35rem); letter-spacing: .42em; text-transform: uppercase; margin-top: clamp(14px, 2vw, 24px); }
+
+  main { padding: clamp(56px, 9vw, 104px) clamp(16px, 5vw, 32px) 0; }
+  .col { max-width: 36rem; margin: 0 auto; }
+  .lead { font-size: clamp(1.25rem, 2.2vw, 1.5rem); line-height: 1.55; }
+  h2 { font-family: var(--mono); font-weight: 700; font-size: 1.05rem; letter-spacing: .14em; text-transform: uppercase; margin: 3em 0 1.2em; }
+  p { font-size: clamp(1.08rem, 1.5vw, 1.18rem); line-height: 1.7; margin-bottom: 1.1em; }
+
+  dl.facts { margin-top: 48px; border-top: 1.5px solid var(--ink); }
+  dl.facts > div { display: grid; grid-template-columns: 11ch 1fr; gap: 16px; padding: 18px 0; border-bottom: 1px solid rgba(29,35,43,.2); }
+  dl.facts dt { font-family: var(--mono); font-weight: 700; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; padding-top: 4px; }
+  dl.facts dd { font-size: 1.12rem; line-height: 1.55; }
+  dl.facts dd small { display: block; font-size: .95rem; color: var(--ink-soft); margin-top: 2px; }
+  .tbd { background: #f3e2b8; padding: 0 4px; }
+
+  ol.steps { list-style: none; counter-reset: s; }
+  ol.steps li { counter-increment: s; display: grid; grid-template-columns: 3ch 1fr; gap: 12px; font-size: 1.1rem; line-height: 1.65; margin-bottom: 14px; }
+  ol.steps li::before { content: counter(s, decimal-leading-zero); font-family: var(--mono); font-weight: 700; font-size: .95rem; padding-top: 3px; }
+
+  .map { margin-top: 20px; position: relative; aspect-ratio: 16 / 10; background: var(--sand-deep); border: 1.5px solid var(--ink); display: grid; place-items: center; text-align: center; padding: 24px; }
+  .map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .map p { font-family: var(--mono); font-size: 13px; color: var(--ink-soft); margin: 12px 0 0; }
+  .btn { font-family: var(--mono); font-size: 1rem; display: inline-flex; justify-content: center; align-items: center; gap: 10px; padding: 14px 20px; border: 1.5px solid var(--ink); color: var(--ink); text-decoration: none; background: transparent; cursor: pointer; }
+  .btn.solid { background: var(--ink); color: var(--sand); }
+  .btn:hover, .btn:focus-visible { background: var(--ink); color: var(--sand); }
+  .maplinks { margin-top: 12px; font-family: var(--mono); font-size: 13px; }
+
+  .rsvp { margin-top: clamp(56px, 8vw, 88px); padding-top: 40px; border-top: 1.5px solid var(--ink); }
+  .rsvp h2 { margin-top: 0; }
+  .rsvp form { display: grid; gap: 14px; }
+  .rsvp label { font-family: var(--mono); font-size: 13px; letter-spacing: .1em; text-transform: uppercase; display: grid; gap: 6px; }
+  .rsvp input { font-family: var(--mono); font-size: 1rem; text-transform: none; letter-spacing: 0; padding: 15px 16px; border: 1.5px solid var(--ink); background: #f7f4ee; color: var(--ink); }
+  .rsvp input:focus { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .rsvp .btn { margin-top: 6px; }
+  .note { font-family: var(--mono); font-size: 12px; line-height: 1.6; color: var(--ink-soft); }
+  .note.err { color: #8a2c1f; }
+  .done { display: none; }
+  .done.on { display: block; }
+  .done .big { font-family: var(--mono); font-weight: 700; font-size: clamp(1.4rem, 3vw, 1.8rem); line-height: 1.3; margin-bottom: 16px; }
+
+  .help { margin: clamp(56px, 8vw, 88px) 0 clamp(64px, 9vw, 104px); background: var(--sand-deep); padding: 28px clamp(20px, 4vw, 32px); }
+  .help h3 { font-family: var(--mono); font-size: .85rem; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 14px; }
+  .help p { font-size: 1rem; line-height: 1.6; color: var(--ink-soft); }
+  .help ul { list-style: none; display: grid; grid-template-columns: max-content 1fr; gap: 12px 18px; align-items: baseline; }
+  .help li { display: contents; }
+  .help a.num { white-space: nowrap; font-family: var(--mono); font-weight: 700; font-size: 1.35rem; color: var(--ink); text-decoration: none; }
+  .help li span { font-size: .98rem; color: var(--ink-soft); }
+
+  footer { background: var(--night); color: rgba(244,241,234,.7); font-family: var(--mono); font-size: 13px; padding: 32px clamp(16px, 6vw, 72px); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; }
+  footer a { color: var(--paper-on-night); }
+  footer a.contact { display: inline-flex; padding: 6px; margin: -6px; color: inherit; opacity: .85; }
+  footer a.contact:hover { opacity: 1; }
+
+  /* ── Menu ── */
+  .menu-btn { font-family: var(--mono); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; background: none; border: 0; color: inherit; cursor: pointer; padding: 8px 0 8px 8px; }
+  .menu-btn:hover, .menu-btn:focus-visible { text-decoration: underline; text-underline-offset: 4px; }
+  .scrim { position: fixed; inset: 0; z-index: 40; background: rgba(10,18,32,.35); opacity: 0; visibility: hidden; transition: opacity .35s ease, visibility 0s linear .35s; }
+  .panel { position: fixed; top: 0; right: 0; bottom: 0; z-index: 50; width: min(420px, 100vw);
+    background: var(--night); color: var(--paper-on-night);
+    padding: 22px clamp(24px, 4vw, 40px) 32px; display: flex; flex-direction: column;
+    transform: translateX(100%); visibility: hidden;
+    transition: transform .45s cubic-bezier(.2,.7,.2,1), visibility 0s linear .45s; }
+  body.menu-open .scrim { opacity: 1; visibility: visible; transition: opacity .35s ease; }
+  body.menu-open .panel { transform: none; visibility: visible; transition: transform .45s cubic-bezier(.2,.7,.2,1); }
+  body.menu-open { overflow: hidden; }
+  .panel .close { align-self: flex-end; font-family: var(--mono); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; background: none; border: 0; color: inherit; cursor: pointer; padding: 8px 0; }
+  .panel .close:hover, .panel .close:focus-visible { text-decoration: underline; text-underline-offset: 4px; }
+  .panel nav { margin-top: clamp(40px, 10vh, 96px); }
+  .panel nav ul { list-style: none; }
+  .panel nav li + li { margin-top: 28px; }
+  .panel nav a { display: block; color: inherit; text-decoration: none; }
+  .panel nav .t { font-family: var(--mono); font-weight: 700; font-size: clamp(1.7rem, 4vw, 2.1rem); line-height: 1.1; }
+  .panel nav .s { display: block; font-family: var(--serif); font-style: italic; font-size: 1rem; opacity: .7; margin-top: 6px; }
+  .panel nav a:hover .t, .panel nav a:focus-visible .t { text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 6px; }
+  .panel nav a[aria-current="page"] .t::after { content: " ·"; opacity: .5; }
+  .panel .foot { margin-top: auto; font-family: var(--mono); font-size: 12px; line-height: 1.7; opacity: .75; }
+  .panel .foot strong { color: var(--paper-on-night); }
+  .panel .foot a { color: inherit; }
+  @media (prefers-reduced-motion: reduce) { .panel, .scrim, body.menu-open .panel, body.menu-open .scrim { transition: none; } }
+</style>
+</head>
+<body>
+<header class="bar">
+  <a class="wordmark" href="/">40000steps</a>
+  <button class="menu-btn" id="menuBtn" type="button" aria-controls="menu" aria-expanded="false">Menu</button>
+</header>
+
+<section class="hero">
+  <h1>Spacery</h1>
+  <p class="kicker">Sopot · czw. 15.10</p>
+</section>
+
+<main>
+  <div class="col">
+    <p class="lead">Godzinny spacer, żeby się poznać, porozmawiać, pomilczeć albo po prostu pobyć we wzajemnym zrozumieniu.</p>
+
+    <dl class="facts">
+      <div><dt>Kiedy</dt><dd>Czwartek, 15 października, 18:00<small>Około godziny. Kończymy tam, gdzie zaczynamy.</small></dd></div>
+      <div><dt>Gdzie</dt><dd>Pomnik Jana Jerzego Haffnera, Sopot<small><span class="tbd">[jak mnie poznasz, np. kolor kurtki]</span></small></dd></div>
+      <div><dt>Dla kogo</dt><dd>Dla każdego, kto jest pełnoletni<small>Nie potrzebujesz diagnozy ani historii do opowiedzenia.</small></dd></div>
+      <div><dt>Koszt</dt><dd>Żaden</dd></div>
+    </dl>
+
+    <h2>Jak to wygląda</h2>
+    <ol class="steps">
+      <li>Spotykamy się o 18:00 przy pomniku. Krótko się witamy — wystarczy imię.</li>
+      <li>Idziemy w tempie rozmowy. Możesz mówić, słuchać albo po prostu iść obok.</li>
+      <li>Po około godzinie wracamy w to samo miejsce. Kto chce, zostaje dłużej; kto musi — idzie.</li>
+    </ol>
+    <p>To, co ktoś powie na spacerze, zostaje na spacerze.</p>
+
+    <h2>Czym to nie jest</h2>
+    <p>Nie jestem terapeutą, a spacer nie jest terapią ani grupą wsparcia prowadzoną przez specjalistę. To spotkanie ludzi, którzy znają tę drogę — albo dopiero zaczynają ją rozumieć.</p>
+
+    <h2>Miejsce</h2>
+    <div class="map" id="map">
+      <div>
+        <button class="btn" type="button" id="loadMap">Pokaż mapę</button>
+        <p>Mapa ładuje się z Google dopiero po kliknięciu.</p>
+      </div>
+    </div>
+    <p class="maplinks"><a href="https://www.google.com/maps/search/?api=1&amp;query=Pomnik+Jana+Jerzego+Haffnera+Sopot" target="_blank" rel="noopener">Otwórz w Mapach Google ↗</a></p>
+
+    <p>Idziemy przy każdej pogodzie — weź kurtkę i wygodne buty. Gdyby coś się zmieniło, napiszę do Ciebie mailem.</p>
+
+    <section class="rsvp" id="zapis">
+      <h2>Będziesz?</h2>
+      <p>Daj znać, że przyjdziesz — będę wiedział, na ile osób czekać.</p>
+      <form id="rsvpForm" novalidate>
+        <label>Imię<input type="text" name="fields[name]" autocomplete="given-name" required></label>
+        <label>Adres e-mail<input type="email" name="fields[email]" autocomplete="email" required></label>
+        <button class="btn solid" type="submit">Będę</button>
+        <p class="note" id="rsvpMsg" role="status">Imię i adres wykorzystam tylko do organizacji spaceru. Wysyłając, potwierdzasz, że masz ukończone 18 lat. <a href="/prywatnosc/">Polityka prywatności</a>.</p>
+      </form>
+      <div class="done" id="rsvpDone">
+        <p class="big" id="rsvpThanks">Dziękuję. Do zobaczenia w czwartek.</p>
+        <p>18:00, pomnik Jana Jerzego Haffnera w Sopocie. Potwierdzenie przyjdzie na Twój adres.</p>
+        <button class="btn" type="button" id="ics">Dodaj do kalendarza</button>
+      </div>
+    </section>
+
+    <aside class="help">
+      <h3>Jeśli jest Ci teraz bardzo ciężko</h3>
+      <p>Nie musisz czekać do czwartku. Zadzwoń:</p>
+      <ul>
+        <li><a class="num" href="tel:116123">116 123</a><span>telefon zaufania dla dorosłych w kryzysie emocjonalnym</span></li>
+        <li><a class="num" href="tel:800702222">800 70 2222</a><span>Centrum Wsparcia, całodobowo</span></li>
+        <li><a class="num" href="tel:112">112</a><span>w sytuacji zagrożenia życia</span></li>
+      </ul>
+    </aside>
+  </div>
+</main>
+
+<footer>
+  <span>40000steps.com · 2026 · <a href="/prywatnosc/">Prywatność</a></span>
+  <a class="contact" href="mailto:lukasz@40000steps.com" aria-label="Napisz do mnie: lukasz@40000steps.com" title="Napisz do mnie"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="1"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg></a>
+</footer>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="panel" id="menu" aria-label="Menu" hidden>
+  <button class="close" id="menuClose" type="button">Zamknij ✕</button>
+  <nav>
+    <ul>
+      <li><a href="/manifest/"><span class="t">Manifest</span><span class="s">40000 kroków. Skąd to miejsce.</span></a></li>
+      <li><a href="/spacery/" aria-current="page"><span class="t">Spacery</span><span class="s">Czwartek, 15.10, 18:00 · Sopot</span></a></li>
+    </ul>
+  </nav>
+  <p class="foot">Jeśli jest Ci teraz bardzo ciężko: <strong>116 123</strong> · <strong>800 70 2222</strong> · w zagrożeniu życia <strong>112</strong><br>
+  <a href="mailto:lukasz@40000steps.com">Napisz do mnie</a> · <a href="/prywatnosc/">Prywatność</a></p>
+</aside>
+<script>
+(function () {
+  var btn = document.getElementById('menuBtn'), panel = document.getElementById('menu'),
+      scrim = document.getElementById('scrim'), close = document.getElementById('menuClose'), last;
+  if (!btn) return;
+  function open() {
+    last = document.activeElement;
+    panel.hidden = false; scrim.hidden = false;
+    requestAnimationFrame(function () { document.body.classList.add('menu-open'); });
+    btn.setAttribute('aria-expanded', 'true');
+    setTimeout(function () { close.focus(); }, 50);
+  }
+  function shut() {
+    document.body.classList.remove('menu-open');
+    btn.setAttribute('aria-expanded', 'false');
+    setTimeout(function () { if (!document.body.classList.contains('menu-open')) { panel.hidden = true; scrim.hidden = true; } }, 460);
+    if (last) last.focus();
+  }
+  btn.addEventListener('click', open);
+  close.addEventListener('click', shut);
+  scrim.addEventListener('click', shut);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && document.body.classList.contains('menu-open')) shut(); });
+  panel.addEventListener('click', function (e) { var a = e.target.closest('a'); if (a && a.getAttribute('href').charAt(0) === '#') shut(); });
+})();
+</script>
+<script>
+(function () {
+  // Mapa ładowana dopiero na życzenie (bez ciasteczek Google przy wejściu na stronę)
+  document.getElementById('loadMap').addEventListener('click', function () {
+    var f = document.createElement('iframe');
+    f.src = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1159.9323913490405!2d18.56760914725076!3d54.447673501244225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46fd0a8ee2a14541%3A0x4b84b832444cc6d5!2sPomnik%20Jana%20Jerzego%20Haffnera%20w%20Sopocie!5e0!3m2!1spl!2spl!4v1791995725976!5m2!1spl!2spl';
+    f.title = 'Mapa: Pomnik Jana Jerzego Haffnera w Sopocie';
+    f.loading = 'lazy'; f.referrerPolicy = 'strict-origin-when-cross-origin'; f.allowFullscreen = true;
+    var m = document.getElementById('map'); m.innerHTML = ''; m.appendChild(f);
+  });
+
+  // Plik kalendarza
+  document.getElementById('ics').addEventListener('click', function () {
+    var ics = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//40000steps//Spacery//PL','BEGIN:VEVENT',
+      'UID:spacer-sopot-20261015@40000steps.com','DTSTAMP:20261014T160000Z',
+      'DTSTART:20261015T160000Z','DTEND:20261015T170000Z',
+      'SUMMARY:Spacer 40000 kroków — Sopot',
+      'LOCATION:Pomnik Jana Jerzego Haffnera\\, Sopot',
+      'DESCRIPTION:Godzinny spacer. https://40000steps.com/spacery/',
+      'END:VEVENT','END:VCALENDAR'].join('\r\n');
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' }));
+    a.download = 'spacer-sopot-15-10.ics'; document.body.appendChild(a); a.click(); a.remove();
+  });
+
+  // Formularz — MAKIETA: nic nie jest jeszcze wysyłane
+  var f = document.getElementById('rsvpForm'), msg = document.getElementById('rsvpMsg');
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = f.elements['fields[name]'].value.trim(), email = f.elements['fields[email]'].value.trim();
+    if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      msg.className = 'note err'; msg.textContent = 'Wpisz, proszę, imię i poprawny adres e-mail.'; return;
+    }
+    document.getElementById('rsvpThanks').textContent = 'Dziękuję, ' + name + '. Do zobaczenia w czwartek.';
+    f.style.display = 'none'; document.getElementById('rsvpDone').classList.add('on');
+  });
+})();
+</script>
+</body>
+</html>

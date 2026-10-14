@@ -139,6 +139,37 @@
   footer { align-items: center; }
   footer a.contact { display: inline-flex; padding: 6px; margin: -6px; color: inherit; opacity: .85; transition: opacity .2s; }
   footer a.contact:hover, footer a.contact:focus-visible { opacity: 1; }
+
+  /* ── Menu ── */
+  .menu-btn { font-family: var(--mono); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; background: none; border: 0; color: inherit; cursor: pointer; padding: 8px 0 8px 8px; }
+  .menu-btn:hover, .menu-btn:focus-visible { text-decoration: underline; text-underline-offset: 4px; }
+  .scrim { position: fixed; inset: 0; z-index: 40; background: rgba(10,18,32,.35); opacity: 0; visibility: hidden; transition: opacity .35s ease, visibility 0s linear .35s; }
+  .panel { position: fixed; top: 0; right: 0; bottom: 0; z-index: 50; width: min(420px, 100vw);
+    background: var(--night); color: var(--paper-on-night);
+    padding: 22px clamp(24px, 4vw, 40px) 32px; display: flex; flex-direction: column;
+    transform: translateX(100%); visibility: hidden;
+    transition: transform .45s cubic-bezier(.2,.7,.2,1), visibility 0s linear .45s; }
+  body.menu-open .scrim { opacity: 1; visibility: visible; transition: opacity .35s ease; }
+  body.menu-open .panel { transform: none; visibility: visible; transition: transform .45s cubic-bezier(.2,.7,.2,1); }
+  body.menu-open { overflow: hidden; }
+  .panel .close { align-self: flex-end; font-family: var(--mono); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; background: none; border: 0; color: inherit; cursor: pointer; padding: 8px 0; }
+  .panel .close:hover, .panel .close:focus-visible { text-decoration: underline; text-underline-offset: 4px; }
+  .panel nav { margin-top: clamp(40px, 10vh, 96px); }
+  .panel nav ul { list-style: none; }
+  .panel nav li + li { margin-top: 28px; }
+  .panel nav a { display: block; color: inherit; text-decoration: none; }
+  .panel nav .t { font-family: var(--mono); font-weight: 700; font-size: clamp(1.7rem, 4vw, 2.1rem); line-height: 1.1; }
+  .panel nav .s { display: block; font-family: var(--serif); font-style: italic; font-size: 1rem; opacity: .7; margin-top: 6px; }
+  .panel nav a:hover .t, .panel nav a:focus-visible .t { text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 6px; }
+  .panel nav a[aria-current="page"] .t::after { content: " ·"; opacity: .5; }
+  .panel .foot { margin-top: auto; font-family: var(--mono); font-size: 12px; line-height: 1.7; opacity: .75; }
+  .panel .foot strong { color: var(--paper-on-night); }
+  .panel .foot a { color: inherit; }
+  @media (prefers-reduced-motion: reduce) { .panel, .scrim, body.menu-open .panel, body.menu-open .scrim { transition: none; } }
+  .hero .event { display: inline-block; align-self: flex-start; margin-top: 36px; font-family: var(--mono); font-size: 14px; color: inherit; text-decoration: none; padding: 10px 14px; border: 1.5px solid rgba(244,241,234,.7); background: rgba(10,18,32,.25); }
+  .hero .event:hover, .hero .event:focus-visible { background: var(--paper-on-night); color: var(--night); }
+  .hero .read { margin-top: 20px !important; }
+  @media (max-width: 480px) { .bar .count { display: none; } }
 </style>
 </head>
 <body>
@@ -154,11 +185,13 @@
     </g>
   </svg>
   <span class="count" id="count">0 kroków</span>
+  <button class="menu-btn" id="menuBtn" type="button" aria-controls="menu" aria-expanded="false">Menu</button>
 </header>
 
 <section class="hero" id="top">
   <h1>40000<br>kroków</h1>
   <p class="kicker">Manifest</p>
+  <a class="event" href="/spacery/">Czwartek, 15.10, 18:00 · Spacer w Sopocie →</a>
   <a class="read" href="#start">czytaj · ok. 6 min <span>↓</span></a>
 </section>
 
@@ -321,6 +354,44 @@
       })
       .finally(function () { btn.disabled = false; });
   });
+})();
+</script>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="panel" id="menu" aria-label="Menu" hidden>
+  <button class="close" id="menuClose" type="button">Zamknij ✕</button>
+  <nav>
+    <ul>
+      <li><a href="/manifest/" aria-current="page"><span class="t">Manifest</span><span class="s">40000 kroków. Skąd to miejsce.</span></a></li>
+      <li><a href="/spacery/"><span class="t">Spacery</span><span class="s">Czwartek, 15.10, 18:00 · Sopot</span></a></li>
+    </ul>
+  </nav>
+  <p class="foot">Jeśli jest Ci teraz bardzo ciężko: <strong>116 123</strong> · <strong>800 70 2222</strong> · w zagrożeniu życia <strong>112</strong><br>
+  <a href="mailto:lukasz@40000steps.com">Napisz do mnie</a> · <a href="/prywatnosc/">Prywatność</a></p>
+</aside>
+<script>
+(function () {
+  var btn = document.getElementById('menuBtn'), panel = document.getElementById('menu'),
+      scrim = document.getElementById('scrim'), close = document.getElementById('menuClose'), last;
+  if (!btn) return;
+  function open() {
+    last = document.activeElement;
+    panel.hidden = false; scrim.hidden = false;
+    requestAnimationFrame(function () { document.body.classList.add('menu-open'); });
+    btn.setAttribute('aria-expanded', 'true');
+    setTimeout(function () { close.focus(); }, 50);
+  }
+  function shut() {
+    document.body.classList.remove('menu-open');
+    btn.setAttribute('aria-expanded', 'false');
+    setTimeout(function () { if (!document.body.classList.contains('menu-open')) { panel.hidden = true; scrim.hidden = true; } }, 460);
+    if (last) last.focus();
+  }
+  btn.addEventListener('click', open);
+  close.addEventListener('click', shut);
+  scrim.addEventListener('click', shut);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && document.body.classList.contains('menu-open')) shut(); });
+  panel.addEventListener('click', function (e) { var a = e.target.closest('a'); if (a && a.getAttribute('href').charAt(0) === '#') shut(); });
 })();
 </script>
 </body>
