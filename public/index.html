@@ -157,13 +157,6 @@
   .note { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); margin-top: 4px; }
 
   /* ── Help ── */
-  .help { max-width: 36rem; margin: clamp(56px, 8vw, 88px) auto clamp(64px, 9vw, 104px); background: var(--sand-deep); padding: 28px clamp(20px, 4vw, 32px); scroll-margin-top: 80px; }
-  .help h3 { font-family: var(--mono); font-size: .85rem; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 14px; }
-  .help p { font-size: 1rem; line-height: 1.6; margin-bottom: 14px; color: var(--ink-soft); }
-  .help ul { list-style: none; display: grid; grid-template-columns: max-content 1fr; gap: 12px 18px; align-items: baseline; }
-  .help li { display: contents; }
-  .help a.num { white-space: nowrap; font-family: var(--mono); font-weight: 700; font-size: 1.35rem; color: var(--ink); text-decoration: none; }
-  .help li span { font-size: .98rem; color: var(--ink-soft); }
 
   .sos {
     position: fixed; right: clamp(12px, 3vw, 28px); bottom: clamp(12px, 3vw, 28px); z-index: 20;
@@ -235,6 +228,7 @@
   footer .sep { margin: 0 .7em; opacity: .45; }
   footer .foot-meta { font-size: 12px; opacity: .55; }
   @media (max-width: 600px) { footer .nums { display: block; margin-top: 2px; } }
+  .cta { margin-bottom: clamp(72px, 10vw, 112px); }
 </style>
 </head>
 <body>
@@ -347,22 +341,13 @@
     </div>
   </section>
 
-  <aside class="help" id="pomoc">
-    <h3>Jeśli jest Ci teraz bardzo ciężko</h3>
-    <p>Nie jestem terapeutą, a ta strona nie zastępuje leczenia. Jeśli jesteś w kryzysie, zadzwoń:</p>
-    <ul>
-      <li><a class="num" href="tel:116123">116 123</a><span>telefon zaufania dla dorosłych w kryzysie emocjonalnym</span></li>
-      <li><a class="num" href="tel:800702222">800 70 2222</a><span>Centrum Wsparcia, całodobowo</span></li>
-      <li><a class="num" href="tel:112">112</a><span>w sytuacji zagrożenia życia</span></li>
-    </ul>
-  </aside>
 </article>
 
 <footer>
   <div class="foot-in">
     <p class="foot-links"><a href="/prywatnosc/">Prywatność</a><span class="sep">|</span><a class="contact" href="mailto:lukasz@40000steps.com" title="lukasz@40000steps.com"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="1"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg><span>Napisz do mnie</span></a></p>
-    <p class="foot-help">Jeśli jest Ci teraz bardzo ciężko: <span class="nums"><a href="tel:116123">116 123</a><span class="sep">|</span><a href="tel:800702222">800 70 2222</a><span class="sep">|</span><a href="tel:112">112</a></span></p>
-    <p class="foot-meta">40000steps.com, 2026</p>
+    <p class="foot-help" id="pomoc">Jeśli jest Ci teraz bardzo ciężko: <span class="nums"><a href="tel:116123">116 123</a><span class="sep">|</span><a href="tel:800702222">800 70 2222</a><span class="sep">|</span><a href="tel:112">112</a></span></p>
+    <p class="foot-meta">40000steps.com, 2026<span class="sep">|</span>Nie jestem terapeutą, a ta strona nie zastępuje leczenia.</p>
   </div>
 </footer>
 
