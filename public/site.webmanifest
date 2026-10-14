@@ -1,0 +1,11 @@
+{
+  "name": "40000 kroków",
+  "short_name": "40000steps",
+  "icons": [
+    { "src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#0f1a2b",
+  "background_color": "#efebe3",
+  "display": "browser"
+}
