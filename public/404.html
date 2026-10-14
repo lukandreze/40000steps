@@ -32,11 +32,23 @@
   li { margin-bottom: .4em; }
   a { color: var(--ink); }
   .lead { font-size: 1.2rem; }
-  footer { background: var(--night); color: rgba(244,241,234,.7); font-family: "Mono", monospace; font-size: 13px; padding-top: 32px; padding-bottom: 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+
+
+  footer { background: #0f1a2b; color: rgba(244,241,234,.72); font-family: "Mono", "Courier New", monospace; font-size: 13px; line-height: 1.6; padding: 36px clamp(16px, 6vw, 72px) 96px; }
+  footer .foot-in { display: grid; gap: 16px; justify-items: start; }
+  footer p { margin: 0; font-size: 13px; line-height: 1.6; color: inherit; }
   footer a { color: #f4f1ea; }
-  footer { align-items: center; }
-  footer a.contact { display: inline-flex; padding: 6px; margin: -6px; color: inherit; opacity: .85; transition: opacity .2s; }
-  footer a.contact:hover, footer a.contact:focus-visible { opacity: 1; }
+  footer .foot-links { display: flex; align-items: center; flex-wrap: wrap; font-size: 14px; }
+  footer .foot-links a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  footer .foot-links a:hover, footer .foot-links a:focus-visible { text-decoration-thickness: 2px; }
+  footer a.contact { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; }
+  footer a.contact span { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  footer a.contact:hover span, footer a.contact:focus-visible span { text-decoration-thickness: 2px; }
+  footer .foot-help a { text-decoration: none; font-weight: 700; font-size: 14px; }
+  footer .nums { white-space: nowrap; }
+  footer .sep { margin: 0 .7em; opacity: .45; }
+  footer .foot-meta { font-size: 12px; opacity: .55; }
+  @media (max-width: 600px) { footer .nums { display: block; margin-top: 2px; } }
 </style>
 </head>
 <body>
@@ -48,8 +60,11 @@
   <p>Jeśli jest Ci teraz bardzo ciężko: <strong>116 123</strong> (telefon zaufania dla dorosłych), <strong>800 70 2222</strong> (Centrum Wsparcia, całodobowo), w zagrożeniu życia <strong>112</strong>.</p>
 </main>
 <footer>
-  <span>40000steps.com · 2026</span>
-  <a class="contact" href="mailto:lukasz@40000steps.com" aria-label="Napisz do mnie: lukasz@40000steps.com" title="Napisz do mnie"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="1"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg></a>
+  <div class="foot-in">
+    <p class="foot-links"><a href="/prywatnosc/">Prywatność</a><span class="sep">|</span><a class="contact" href="mailto:lukasz@40000steps.com" title="lukasz@40000steps.com"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="1"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg><span>Napisz do mnie</span></a></p>
+    <p class="foot-help">Jeśli jest Ci teraz bardzo ciężko: <span class="nums"><a href="tel:116123">116 123</a><span class="sep">|</span><a href="tel:800702222">800 70 2222</a><span class="sep">|</span><a href="tel:112">112</a></span></p>
+    <p class="foot-meta">40000steps.com, 2026</p>
+  </div>
 </footer>
 </body>
 </html>
