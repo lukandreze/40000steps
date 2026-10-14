@@ -175,8 +175,8 @@
   .news-date { display: block; font-family: var(--mono); font-size: 14px; letter-spacing: .06em; opacity: .8; margin-bottom: 6px; }
   .news-title { font-family: var(--mono); font-weight: 700; font-size: clamp(1.3rem, 2.4vw, 1.7rem); line-height: 1.2; }
   .news-sub { font-family: var(--serif); font-style: italic; font-size: 1.05rem; opacity: .8; margin-top: 6px; }
-  .news-cta { font-family: var(--mono); font-size: 15px; color: var(--paper-on-night); text-decoration: none; padding: 14px 18px; border: 1.5px solid var(--paper-on-night); white-space: nowrap; }
-  .news-cta:hover, .news-cta:focus-visible { background: var(--paper-on-night); color: var(--night); }
+  .news-cta { font-family: var(--mono); font-size: 15px; color: var(--paper-on-night); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; white-space: nowrap; opacity: .9; }
+  .news-cta:hover, .news-cta:focus-visible { opacity: 1; text-decoration-thickness: 2px; }
   @media (max-width: 760px) { .news-in { grid-template-columns: 1fr; gap: 14px; } .news-cta { justify-self: start; } }
 </style>
 </head>
@@ -210,7 +210,7 @@
       <p class="news-title">Spacer przy pomniku Haffnera</p>
       <p class="news-sub">Godzina, żeby się poznać, porozmawiać albo pomilczeć. Dla każdego, kto jest pełnoletni.</p>
     </div>
-    <a class="news-cta" href="/spacery/">Szczegóły i zapis →</a>
+    <a class="news-cta" href="/spacery/">Szczegóły →</a>
   </div>
 </section>
 
