@@ -35,16 +35,21 @@
   a { color: var(--ink); }
   .lead { font-size: 1.2rem; }
 
+
   footer { background: #0f1a2b; color: rgba(244,241,234,.72); font-family: "Mono", "Courier New", monospace; font-size: 13px; line-height: 1.6; padding: 36px clamp(16px, 6vw, 72px) 96px; }
-  footer .foot-in { display: grid; gap: 12px; justify-items: start; }
+  footer .foot-in { display: grid; gap: 16px; justify-items: start; }
   footer p { margin: 0; font-size: 13px; line-height: 1.6; color: inherit; }
   footer a { color: #f4f1ea; }
-  footer a.contact { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; text-decoration: none; padding: 6px 0; }
+  footer .foot-links { display: flex; align-items: center; flex-wrap: wrap; font-size: 14px; }
+  footer .foot-links a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  footer .foot-links a:hover, footer .foot-links a:focus-visible { text-decoration-thickness: 2px; }
+  footer a.contact { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; }
   footer a.contact span { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
   footer a.contact:hover span, footer a.contact:focus-visible span { text-decoration-thickness: 2px; }
-  footer .foot-help a { text-decoration: none; font-weight: 700; }
+  footer .foot-help a { text-decoration: none; font-weight: 700; font-size: 14px; }
   footer .nums { white-space: nowrap; }
   footer .sep { margin: 0 .7em; opacity: .45; }
+  footer .foot-meta { font-size: 12px; opacity: .55; }
   @media (max-width: 600px) { footer .nums { display: block; margin-top: 2px; } }
 </style>
 </head>
@@ -89,9 +94,9 @@
 </main>
 <footer>
   <div class="foot-in">
-    <p class="foot-meta">40000steps.com<span class="sep">|</span>2026<span class="sep">|</span><a href="/prywatnosc/">Prywatność</a></p>
-    <a class="contact" href="mailto:lukasz@40000steps.com" title="lukasz@40000steps.com"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="1"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg><span>Napisz do mnie</span></a>
+    <p class="foot-links"><a href="/prywatnosc/">Prywatność</a><span class="sep">|</span><a class="contact" href="mailto:lukasz@40000steps.com" title="lukasz@40000steps.com"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="1"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg><span>Napisz do mnie</span></a></p>
     <p class="foot-help">Jeśli jest Ci teraz bardzo ciężko: <span class="nums"><a href="tel:116123">116 123</a><span class="sep">|</span><a href="tel:800702222">800 70 2222</a><span class="sep">|</span><a href="tel:112">112</a></span></p>
+    <p class="foot-meta">40000steps.com, 2026</p>
   </div>
 </footer>
 </body>
