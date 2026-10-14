@@ -99,8 +99,6 @@
   figure.wide img { height: clamp(300px, 64vh, 680px); }
 
   .sig { display: block; width: clamp(170px, 24vw, 240px); height: auto; margin: 2.2em 0 0 -6px; color: var(--ink); }
-  .sig.ready path { stroke-dasharray: var(--len); stroke-dashoffset: var(--len); }
-  .sig.draw path { transition: stroke-dashoffset var(--dur) cubic-bezier(.45,.1,.4,1) var(--delay); stroke-dashoffset: 0; }
 
   /* ── CTA ── */
   .cta { max-width: 36rem; margin: clamp(56px, 8vw, 88px) auto 0; padding-top: 40px; border-top: 1.5px solid var(--ink); }
@@ -321,26 +319,6 @@
       })
       .finally(function () { btn.disabled = false; });
   });
-})();
-</script>
-<script>
-(function () {
-  var sig = document.querySelector('svg.sig');
-  if (!sig || window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
-  var paths = sig.querySelectorAll('path'), total = 0, lens = [];
-  paths.forEach(function (p) { var l = p.getTotalLength(); lens.push(l); total += l; });
-  var acc = 0, T = 1.6;
-  paths.forEach(function (p, i) {
-    var dur = T * lens[i] / total;
-    p.style.setProperty('--len', lens[i] + 1);
-    p.style.setProperty('--dur', dur + 's');
-    p.style.setProperty('--delay', (acc + i * 0.08) + 's');
-    acc += dur;
-  });
-  sig.classList.add('ready');
-  new IntersectionObserver(function (es, o) {
-    es.forEach(function (e) { if (e.isIntersecting) { requestAnimationFrame(function () { sig.classList.add('draw'); }); o.disconnect(); } });
-  }, { threshold: 0.6 }).observe(sig);
 })();
 </script>
 </body>
