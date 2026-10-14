@@ -171,12 +171,12 @@
       <form id="rsvpForm" novalidate>
         <label>Imię<input type="text" name="fields[name]" autocomplete="given-name" required></label>
         <label>Adres e-mail<input type="email" name="fields[email]" autocomplete="email" required></label>
-        <button class="btn solid" type="submit">Będę</button>
-        <p class="note" id="rsvpMsg" role="status">Imię i adres wykorzystam tylko do organizacji spaceru. Wysyłając, potwierdzasz, że masz ukończone 18 lat. <a href="/prywatnosc/">Polityka prywatności</a>.</p>
+        <button class="btn solid" type="submit">Będę — potwierdź mailem</button>
+        <p class="note" id="rsvpMsg" role="status">Po kliknięciu otworzy się gotowa wiadomość do mnie — wystarczy ją wysłać. Imię i adres wykorzystam tylko do organizacji spaceru. Wysyłając, potwierdzasz, że masz ukończone 18 lat. <a href="/prywatnosc/">Polityka prywatności</a>.</p>
       </form>
       <div class="done" id="rsvpDone">
         <p class="big" id="rsvpThanks">Dziękuję. Do zobaczenia w czwartek.</p>
-        <p>18:00, pomnik Jana Jerzego Haffnera w Sopocie. Potwierdzenie przyjdzie na Twój adres.</p>
+        <p id="rsvpDoneText"></p>
         <button class="btn" type="button" id="ics">Dodaj do kalendarza</button>
       </div>
     </section>
@@ -260,7 +260,7 @@
     a.download = 'spacer-sopot-15-10.ics'; document.body.appendChild(a); a.click(); a.remove();
   });
 
-  // Formularz — MAKIETA: nic nie jest jeszcze wysyłane
+  // Formularz — na razie potwierdzenie mailem (otwiera wiadomość do Łukasza)
   var f = document.getElementById('rsvpForm'), msg = document.getElementById('rsvpMsg');
   f.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -268,7 +268,11 @@
     if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       msg.className = 'note err'; msg.textContent = 'Wpisz, proszę, imię i poprawny adres e-mail.'; return;
     }
-    document.getElementById('rsvpThanks').textContent = 'Dziękuję, ' + name + '. Do zobaczenia w czwartek.';
+    var subject = 'Będę na spacerze — Sopot, 15.10';
+    var body = 'Cześć Łukasz,\n\nbędę na czwartkowym spacerze o 18:00 przy pomniku Haffnera.\n\n' + name + '\n' + email;
+    window.location.href = 'mailto:lukasz@40000steps.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    document.getElementById('rsvpThanks').textContent = 'Dziękuję, ' + name + '. Wyślij jeszcze maila, który się otworzył.';
+    document.getElementById('rsvpDoneText').textContent = 'Jeśli program pocztowy się nie otworzył, napisz po prostu na lukasz@40000steps.com. Do zobaczenia w czwartek o 18:00 przy pomniku Haffnera.';
     f.style.display = 'none'; document.getElementById('rsvpDone').classList.add('on');
   });
 })();
