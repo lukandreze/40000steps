@@ -30,7 +30,7 @@
   body { background: var(--sand); color: var(--ink); font-family: var(--serif); -webkit-font-smoothing: antialiased; }
   a { color: inherit; }
 
-  .bar { position: absolute; inset: 0 0 auto 0; z-index: 20; height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 clamp(16px, 4vw, 40px); color: var(--paper-on-night); }
+  .bar { position: absolute; inset: 0 0 auto 0; z-index: 20; height: 56px; display: flex; align-items: center; gap: 16px; padding: 0 clamp(16px, 4vw, 40px); color: var(--paper-on-night); }
   .bar .wordmark { font-family: var(--mono); font-weight: 700; font-size: 15px; text-decoration: none; color: inherit; }
 
   .hero { min-height: 72vh; min-height: 72svh; display: flex; flex-direction: column; justify-content: flex-end; color: var(--paper-on-night);
@@ -91,18 +91,18 @@
   footer a.contact:hover { opacity: 1; }
 
   /* ── Menu ── */
-  .menu-btn { font-family: var(--mono); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; background: none; border: 0; color: inherit; cursor: pointer; padding: 8px 0 8px 8px; }
+  .menu-btn { font-family: var(--mono); font-weight: 700; font-size: 16px; letter-spacing: .14em; text-transform: uppercase; background: none; border: 0; color: inherit; cursor: pointer; padding: 10px 14px 10px 0; margin-right: 6px; border-right: 1.5px solid currentColor; line-height: 1; }
   .menu-btn:hover, .menu-btn:focus-visible { text-decoration: underline; text-underline-offset: 4px; }
   .scrim { position: fixed; inset: 0; z-index: 40; background: rgba(10,18,32,.35); opacity: 0; visibility: hidden; transition: opacity .35s ease, visibility 0s linear .35s; }
-  .panel { position: fixed; top: 0; right: 0; bottom: 0; z-index: 50; width: min(420px, 100vw);
+  .panel { position: fixed; top: 0; left: 0; bottom: 0; z-index: 50; width: min(420px, 100vw);
     background: var(--night); color: var(--paper-on-night);
     padding: 22px clamp(24px, 4vw, 40px) 32px; display: flex; flex-direction: column;
-    transform: translateX(100%); visibility: hidden;
+    transform: translateX(-100%); visibility: hidden;
     transition: transform .45s cubic-bezier(.2,.7,.2,1), visibility 0s linear .45s; }
   body.menu-open .scrim { opacity: 1; visibility: visible; transition: opacity .35s ease; }
   body.menu-open .panel { transform: none; visibility: visible; transition: transform .45s cubic-bezier(.2,.7,.2,1); }
   body.menu-open { overflow: hidden; }
-  .panel .close { align-self: flex-end; font-family: var(--mono); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; background: none; border: 0; color: inherit; cursor: pointer; padding: 8px 0; }
+  .panel .close { align-self: flex-start; font-family: var(--mono); font-weight: 700; font-size: 16px; letter-spacing: .12em; text-transform: uppercase; background: none; border: 0; color: inherit; cursor: pointer; padding: 8px 0; }
   .panel .close:hover, .panel .close:focus-visible { text-decoration: underline; text-underline-offset: 4px; }
   .panel nav { margin-top: clamp(40px, 10vh, 96px); }
   .panel nav ul { list-style: none; }
@@ -120,8 +120,8 @@
 </head>
 <body>
 <header class="bar">
-  <a class="wordmark" href="/">40000steps</a>
   <button class="menu-btn" id="menuBtn" type="button" aria-controls="menu" aria-expanded="false">Menu</button>
+  <a class="wordmark" href="/">40000steps</a>
 </header>
 
 <section class="hero">
@@ -197,7 +197,7 @@
 
 <div class="scrim" id="scrim" hidden></div>
 <aside class="panel" id="menu" aria-label="Menu" hidden>
-  <button class="close" id="menuClose" type="button">Zamknij ✕</button>
+  <button class="close" id="menuClose" type="button">✕ Zamknij</button>
   <nav>
     <ul>
       <li><a href="/manifest/"><span class="t">Manifest</span><span class="s">40000 kroków. Skąd to miejsce.</span></a></li>
