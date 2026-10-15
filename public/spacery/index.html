@@ -185,14 +185,9 @@
   ol.steps li { counter-increment: s; display: grid; grid-template-columns: 3ch 1fr; gap: 12px; font-size: 1.1rem; line-height: 1.65; margin-bottom: 14px; }
   ol.steps li::before { content: counter(s, decimal-leading-zero); font-family: var(--mono); font-weight: 700; font-size: .95rem; padding-top: 3px; }
 
-  .map { margin-top: 20px; position: relative; aspect-ratio: 16 / 10; background: var(--sand-deep); border: 1.5px solid var(--ink); display: grid; place-items: center; text-align: center; padding: 24px; }
-  .map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-  .map p { font-family: var(--mono); font-size: 13px; color: var(--ink-soft); margin: 12px 0 0; }
   .btn { font-family: var(--mono); font-size: 1rem; display: inline-flex; justify-content: center; align-items: center; gap: 10px; padding: 14px 20px; border: 1.5px solid var(--ink); color: var(--ink); text-decoration: none; background: transparent; cursor: pointer; }
   .btn.solid { background: var(--ink); color: var(--sand); }
   .btn:hover, .btn:focus-visible { background: var(--ink); color: var(--sand); }
-  .maplinks { margin: 14px 0 28px; display: flex; flex-wrap: wrap; gap: 10px; }
-  .maplinks .btn { font-size: .95rem; padding: 12px 16px; }
   dl.facts a.place { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
   dl.facts a.place:hover { text-decoration-thickness: 2px; }
 
@@ -313,14 +308,6 @@
     <h2>Czym to nie jest</h2>
     <p>Nie jestem terapeutą, a spacer nie jest terapią ani grupą wsparcia prowadzoną przez specjalistę. To spotkanie ludzi, którzy znają tę drogę albo dopiero zaczynają ją rozumieć.</p>
 
-    <h2>Miejsce</h2>
-    <div class="map" id="map">
-      <div>
-        <button class="btn" type="button" id="loadMap">Pokaż mapę</button>
-        <p>Mapa ładuje się z Google dopiero po kliknięciu.</p>
-      </div>
-    </div>
-    <p class="maplinks"><a class="btn solid" href="https://www.google.com/maps/dir/?api=1&amp;destination=Pomnik+Jana+Jerzego+Haffnera+Sopot" target="_blank" rel="noopener">Prowadź do miejsca ↗</a> <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Pomnik+Jana+Jerzego+Haffnera+Sopot" target="_blank" rel="noopener">Otwórz w Mapach Google ↗</a></p>
 
     <p>Idziemy przy każdej pogodzie, więc weź proszę kurtkę, parasol i wygodne buty. Gdyby coś się zmieniło, dam Ci znać mailem najpóźniej dwie godziny przed spotkaniem.</p>
 
@@ -392,14 +379,6 @@
 </script>
 <script>
 (function () {
-  // Mapa ładowana dopiero na życzenie (bez ciasteczek Google przy wejściu na stronę)
-  document.getElementById('loadMap').addEventListener('click', function () {
-    var f = document.createElement('iframe');
-    f.src = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1159.9323913490405!2d18.56760914725076!3d54.447673501244225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46fd0a8ee2a14541%3A0x4b84b832444cc6d5!2sPomnik%20Jana%20Jerzego%20Haffnera%20w%20Sopocie!5e0!3m2!1spl!2spl!4v1791995725976!5m2!1spl!2spl';
-    f.title = 'Mapa: Pomnik Jana Jerzego Haffnera w Sopocie';
-    f.loading = 'lazy'; f.referrerPolicy = 'strict-origin-when-cross-origin'; f.allowFullscreen = true;
-    var m = document.getElementById('map'); m.innerHTML = ''; m.appendChild(f);
-  });
 
   // Plik kalendarza
   document.getElementById('ics').addEventListener('click', function () {
