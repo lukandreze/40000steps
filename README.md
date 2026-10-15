@@ -19,4 +19,9 @@ Formularz „Zostaw adres” wysyła adres do MailerLite (formularz „Spacer”
 
 Notatki powstają w Obsidianie Łukasza: `Obsidian Vault/40000steps/Zapisane/` (iCloud). Jeden plik = jedna notatka, nagłówek: `tytuł`, `miejsce`, `miesiąc`, `słowa` (niewidoczne słowa kluczowe), `szkic` (`tak` = nie publikować). Pliki zaczynające się od `_` są pomijane.
 
-Publikacja: Claude czyta folder, generuje `public/zapiski/` (lista + strona każdej notatki, od najnowszej), pokazuje podgląd i publikuje dopiero po akceptacji.
+Źródło na stronie: kopie notatek w `content/zapiski/`, kolejność i stałe adresy w `content/zapiski/kolejnosc.txt`.
+
+- `python3 scripts/zapiski.py` buduje `public/zapiski/` tylko z gotowych notatek i aktualizuje `sitemap.xml`.
+- `python3 scripts/zapiski.py --szkice` to podgląd ze szkicami (`noindex`). Nigdy nie trafia na `main`.
+
+Publikacja: Claude kopiuje notatki z Obsidiana, buduje, pokazuje podgląd i publikuje (push na `main`) dopiero po akceptacji.
