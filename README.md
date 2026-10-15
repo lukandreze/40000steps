@@ -14,3 +14,9 @@ Strona: [40000steps.com](https://40000steps.com)
 - `photos/` — oryginalne zdjęcia (nie są publikowane)
 
 Formularz „Zostaw adres” wysyła adres do MailerLite (formularz „Spacer”, double opt-in).
+
+## Zapisane podczas spaceru (`/zapiski/`)
+
+Notatki powstają w Obsidianie Łukasza: `Obsidian Vault/40000steps/Zapisane/` (iCloud). Jeden plik = jedna notatka, nagłówek: `tytuł`, `miejsce`, `miesiąc`, `słowa` (niewidoczne słowa kluczowe), `szkic` (`tak` = nie publikować). Pliki zaczynające się od `_` są pomijane.
+
+Publikacja: Claude czyta folder, generuje `public/zapiski/` (lista + strona każdej notatki, od najnowszej), pokazuje podgląd i publikuje dopiero po akceptacji.
