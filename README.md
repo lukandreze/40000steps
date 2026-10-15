@@ -17,11 +17,10 @@ Formularz „Zostaw adres” wysyła adres do MailerLite (formularz „Spacer”
 
 ## Zapisane podczas spaceru (`/zapiski/`)
 
-Notatki powstają w Obsidianie Łukasza: `Obsidian Vault/40000steps/Zapisane/` (iCloud). Jeden plik = jedna notatka, nagłówek: `tytuł`, `miejsce`, `miesiąc`, `słowa` (niewidoczne słowa kluczowe), `szkic` (`tak` = nie publikować). Pliki zaczynające się od `_` są pomijane.
+Notatki powstają w Obsidianie Łukasza: `Obsidian Vault/40000steps/Zapisane/` (iCloud). Jeden plik to jedna notatka: **nazwa pliku jest tytułem**, treść to zwykłe akapity, bez żadnego nagłówka. Pliki zaczynające się od `_` są pomijane.
 
-Źródło na stronie: kopie notatek w `content/zapiski/`, kolejność i stałe adresy w `content/zapiski/kolejnosc.txt`.
+- `content/zapiski/` – kopie notatek (źródło strony).
+- `content/zapiski/kolejnosc.txt` – adres, plik i miesiąc pierwszej publikacji. Raz nadane, nie zmieniają się.
+- `python3 scripts/zapiski.py` – buduje `public/zapiski/` i aktualizuje `sitemap.xml`.
 
-- `python3 scripts/zapiski.py` buduje `public/zapiski/` tylko z gotowych notatek i aktualizuje `sitemap.xml`.
-- `python3 scripts/zapiski.py --szkice` to podgląd ze szkicami (`noindex`). Nigdy nie trafia na `main`.
-
-Publikacja: Claude kopiuje notatki z Obsidiana, buduje, pokazuje podgląd i publikuje (push na `main`) dopiero po akceptacji.
+Publikacja: Łukasz pisze w wątku „opublikuj”. Claude kopiuje folder `Zapisane`, buduje, wypycha na `main` (Cloudflare wdraża sam) i sprawdza stronę.

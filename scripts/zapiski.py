@@ -1,24 +1,14 @@
 #!/usr/bin/env python3
 """Buduje sekcję „Zapisane podczas spaceru” (public/zapiski/) z notatek w content/zapiski/.
 
-Notatki to pliki .md skopiowane z Obsidiana (Obsidian Vault/40000steps/Zapisane/).
-Nagłówek notatki:
-    ---
-    tytuł: Panika nie wybiera
-    miejsce: Warszawa
-    miesiąc: październik 2026
-    słowa: lęk, praca
-    szkic: tak            # tak = nie publikować
-    ---
+Notatki to zwykłe pliki .md skopiowane z Obsidiana (Obsidian Vault/40000steps/Zapisane/).
+Nazwa pliku = tytuł notatki. Treść = akapity. Nie trzeba żadnego nagłówka.
 Pliki zaczynające się od „_” są pomijane.
 
-Kolejność: content/zapiski/kolejnosc.txt — adres (slug) każdej opublikowanej notatki,
-dopisywany przy pierwszej publikacji. Najnowsza na końcu, na stronie na górze.
-Raz nadany adres się nie zmienia, nawet gdy zmienisz tytuł.
+content/zapiski/kolejnosc.txt: adres (slug), plik i miesiąc pierwszej publikacji każdej notatki.
+Najnowsza na końcu, na stronie na górze. Raz nadany adres i data się nie zmieniają.
 
-Użycie:
-    python3 scripts/zapiski.py            # buduje tylko notatki gotowe (szkic ≠ tak)
-    python3 scripts/zapiski.py --szkice   # podgląd: buduje też szkice, nic nie zapisuje do kolejnosc.txt
+Użycie: python3 scripts/zapiski.py
 """
 import html, json, os, re, shutil, sys, unicodedata
 
@@ -29,7 +19,7 @@ ORDER = os.path.join(SRC, 'kolejnosc.txt')
 OUT = os.path.join(PUB, 'zapiski')
 HERE = os.path.dirname(os.path.abspath(__file__))
 TITLE = 'Zapisane podczas spaceru'
-PREVIEW = '--szkice' in sys.argv
+import datetime
 
 MONTHS = ['styczeń', 'luty', 'marzec', 'kwiecień', 'maj', 'czerwiec', 'lipiec',
           'sierpień', 'wrzesień', 'październik', 'listopad', 'grudzień']
@@ -42,30 +32,17 @@ def slugify(t):
 
 
 def parse(path):
-    raw = open(path, encoding='utf-8').read().replace('\r\n', '\n')
-    m = re.match(r'^---\n(.*?)\n---\n?(.*)$', raw, re.S)
-    if not m:
-        raise SystemExit(f'Brak nagłówka (---) w pliku: {os.path.basename(path)}')
-    meta = {}
-    for line in m.group(1).split('\n'):
-        if ':' in line:
-            k, v = line.split(':', 1)
-            meta[unicodedata.normalize('NFC', k.strip().lower())] = v.strip()
-    for k in ('tytuł', 'miejsce', 'miesiąc'):
-        if not meta.get(k):
-            raise SystemExit(f'Brak pola „{k}” w pliku: {os.path.basename(path)}')
-    body = m.group(2).strip()
+    raw = unicodedata.normalize('NFC', open(path, encoding='utf-8').read().replace('\r\n', '\n'))
+    raw = re.sub(r'^---\n.*?\n---\n?', '', raw, flags=re.S)          # ewentualne właściwości Obsidiana
+    title = unicodedata.normalize('NFC', os.path.basename(path)[:-3]).strip()
+    lines = raw.strip().split('\n')
+    if lines and re.match(r'^#\s+', lines[0]):                       # nagłówek „# Tytuł” na górze pomijamy
+        lines = lines[1:]
+    body = '\n'.join(lines).strip()
     if not body:
-        raise SystemExit(f'Pusta treść w pliku: {os.path.basename(path)}')
-    month = meta['miesiąc'].lower().split()
-    if len(month) != 2 or month[0] not in MONTHS or not month[1].isdigit():
-        raise SystemExit(f'Pole „miesiąc” ma mieć postać np. „październik 2026”: {os.path.basename(path)}')
-    return dict(
-        file=os.path.basename(path), title=meta['tytuł'], place=meta['miejsce'],
-        month=meta['miesiąc'].lower(), iso=f'{month[1]}-{MONTHS.index(month[0]) + 1:02d}',
-        words=[w.strip() for w in meta.get('słowa', '').split(',') if w.strip()],
-        draft=meta.get('szkic', 'nie').lower() in ('tak', 'yes', 'true'),
-        paras=[p.strip() for p in re.split(r'\n\s*\n', body) if p.strip()])
+        raise SystemExit(f'Notatka „{title}” jest pusta.')
+    return dict(file=os.path.basename(path), title=title,
+                paras=[p.strip() for p in re.split(r'\n\s*\n', body) if p.strip()])
 
 
 def inline(t):
@@ -117,7 +94,7 @@ def page(title, desc, path, main, extra='', ld=None):
             '<meta property="og:image" content="https://40000steps.com/assets/og.jpg">\n'
             '<meta property="og:locale" content="pl_PL">\n<meta property="og:site_name" content="40000 kroków">\n'
             '<meta name="twitter:card" content="summary_large_image">\n'
-            f'<meta name="robots" content="{"noindex" if PREVIEW else "index, follow"}">\n'
+            '<meta name="robots" content="index, follow">\n'
             + (f'<script type="application/ld+json">\n{json.dumps(ld, ensure_ascii=False, indent=1)}\n</script>\n' if ld else '')
             + theme + '\n' + css + '\n</head>\n<body>\n' + bar + '\n\n<main>\n' + main + '\n</main>\n\n'
             + footer + '\n\n' + panel + '\n' + menu_js + '\n' + extra + '\n' + view + '</body>\n</html>\n')
@@ -128,26 +105,30 @@ notes = []
 for f in sorted(os.listdir(SRC)):
     if f.endswith('.md') and not f.startswith('_'):
         n = parse(os.path.join(SRC, f))
-        if PREVIEW or not n['draft']:
-            notes.append(n)
+        notes.append(n)
 
+now = datetime.date.today()
+this_month = f'{MONTHS[now.month - 1]} {now.year}'
 order = [l.split('\t') for l in open(ORDER, encoding='utf-8').read().splitlines() if l.strip()] if os.path.exists(ORDER) else []
-slug_of = {fn: sl for sl, fn in order}
-taken = set(slug_of.values())
+known = {r[1]: r for r in order}                       # plik -> [slug, plik, miesiąc]
+taken = {r[0] for r in order}
 for n in notes:
-    if n['file'] not in slug_of:
+    if n['file'] not in known:
         s = base = slugify(n['title']) or 'notatka'
         k = 2
         while s in taken:
             s = f'{base}-{k}'; k += 1
-        slug_of[n['file']] = s; taken.add(s)
-        order.append([s, n['file']])
-    n['slug'] = slug_of[n['file']]
-rank = {fn: i for i, (sl, fn) in enumerate(order)}
+        taken.add(s)
+        known[n['file']] = [s, n['file'], this_month]
+        order.append(known[n['file']])
+    n['slug'], _, n['month'] = known[n['file']]
+    m = n['month'].split()
+    n['iso'] = f'{m[1]}-{MONTHS.index(m[0]) + 1:02d}'
+rank = {r[1]: i for i, r in enumerate(order)}
 notes.sort(key=lambda n: rank[n['file']], reverse=True)   # najnowsza na górze
 
 if not notes:
-    raise SystemExit('Nie ma żadnej gotowej notatki (wszystkie mają „szkic: tak”). Nic nie zbudowano.')
+    raise SystemExit('Folder Zapisane jest pusty. Nic nie zbudowano.')
 
 if os.path.isdir(OUT):
     shutil.rmtree(OUT)
@@ -155,8 +136,8 @@ os.makedirs(OUT)
 
 e = html.escape
 items = '\n'.join(
-    f'      <li><a href="/zapiski/{n["slug"]}/"><span class="where">{e(n["place"])} · {e(n["month"])}'
-    f'{" · szkic" if n["draft"] else ""}</span><span class="nt">{e(n["title"])}</span>'
+    f'      <li><a href="/zapiski/{n["slug"]}/"><span class="where">{e(n["month"])}</span>'
+    f'<span class="nt">{e(n["title"])}</span>'
     f'<span class="ex">{e(excerpt(n["paras"]))}</span></a></li>' for n in notes)
 main = f'''  <div class="col">
     <header class="nb-head">
@@ -187,11 +168,11 @@ for idx, n in enumerate(notes):
     if idx + 1 < len(notes):
         o = notes[idx + 1]
         older = (f'    <nav class="older" aria-label="Wcześniejsza notatka"><a href="/zapiski/{o["slug"]}/">'
-                 f'<span class="where">Wcześniej · {e(o["place"])} · {e(o["month"])}</span>'
+                 f'<span class="where">Wcześniej · {e(o["month"])}</span>'
                  f'<span class="nt">{e(o["title"])}</span></a></nav>\n')
     main = f'''  <article class="col entry">
     <a class="back" href="/zapiski/">← {TITLE}</a>
-    <span class="where">{e(n["place"])} · {e(n["month"])}</span>
+    <span class="where">{e(n["month"])}</span>
     <h1>{e(n["title"])}</h1>
     <div class="body">
 {body}
@@ -203,23 +184,20 @@ for idx, n in enumerate(notes):
           "url": f"https://40000steps.com/zapiski/{n['slug']}/",
           "author": {"@type": "Person", "name": "Łukasz", "url": "https://40000steps.com/manifest/"},
           "isPartOf": {"@type": "Blog", "name": TITLE, "url": "https://40000steps.com/zapiski/"}}
-    if n['words']:
-        ld['keywords'] = ', '.join(n['words'])
     os.makedirs(os.path.join(OUT, n['slug']))
     open(os.path.join(OUT, n['slug'], 'index.html'), 'w', encoding='utf-8').write(
         page(f'{n["title"]} · {TITLE}', excerpt(n['paras']), f'/zapiski/{n["slug"]}/', main, ld=ld))
 
-if not PREVIEW:
-    open(ORDER, 'w', encoding='utf-8').write(''.join(f'{s}\t{f}\n' for s, f in order))
-    # mapa strony: podmień wpisy /zapiski/
-    sm_path = os.path.join(PUB, 'sitemap.xml')
-    sm = open(sm_path, encoding='utf-8').read()
-    sm = re.sub(r'\s*<url>\s*<loc>https://40000steps\.com/zapiski/[^<]*</loc>.*?</url>', '', sm, flags=re.S)
-    add = ''.join(f'\n  <url><loc>https://40000steps.com/zapiski/{s}</loc></url>'
-                  for s in [''] + [n['slug'] + '/' for n in notes])
-    sm = sm.replace('</urlset>', add + '\n</urlset>')
-    open(sm_path, 'w', encoding='utf-8').write(sm)
+open(ORDER, 'w', encoding='utf-8').write(''.join('\t'.join(r) + '\n' for r in order))
+# mapa strony: podmień wpisy /zapiski/
+sm_path = os.path.join(PUB, 'sitemap.xml')
+sm = open(sm_path, encoding='utf-8').read()
+sm = re.sub(r'\s*<url>\s*<loc>https://40000steps\.com/zapiski/[^<]*</loc>.*?</url>', '', sm, flags=re.S)
+add = ''.join(f'\n  <url><loc>https://40000steps.com/zapiski/{s}</loc></url>'
+      for s in [''] + [n['slug'] + '/' for n in notes])
+sm = sm.replace('</urlset>', add + '\n</urlset>')
+open(sm_path, 'w', encoding='utf-8').write(sm)
 
-print(('PODGLĄD (ze szkicami): ' if PREVIEW else 'Zbudowano: ') + f'{len(notes)} notatek')
+print(f'Zbudowano: {len(notes)} (najnowsza na górze)')
 for n in notes:
-    print(f'  /zapiski/{n["slug"]}/  —  {n["title"]}' + ('  [szkic]' if n['draft'] else ''))
+    print(f'  /zapiski/{n["slug"]}/  —  {n["title"]}' + f'  ({n["month"]})')
