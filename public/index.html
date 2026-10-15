@@ -21,6 +21,16 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#0f1a2b">
+<script>
+/* Tryb widoku ustawiany przed pierwszym renderem, bez mignięcia */
+(function () {
+  var pref = "auto"; try { pref = localStorage.getItem("view") || "auto"; } catch (e) {}
+  var m = function (q) { return window.matchMedia && matchMedia(q).matches; };
+  var t = pref !== "auto" ? pref : m("(prefers-contrast: more)") || m("(forced-colors: active)") ? "contrast" : m("(prefers-color-scheme: dark)") ? "night" : "light";
+  document.documentElement.setAttribute("data-theme", t);
+  document.documentElement.setAttribute("data-view", pref);
+})();
+</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -74,17 +84,72 @@
   @font-face { font-family: "Mono"; font-weight: 700; font-display: swap; src: url(/assets/fonts/courier-prime-latin-700-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+2000-206F; }
   @font-face { font-family: "Mono"; font-weight: 700; font-display: swap; src: url(/assets/fonts/courier-prime-latin-ext-700-normal.woff2) format("woff2"); unicode-range: U+0100-024F; }
 
+  /* ── Tryby widoku: jasny (domyślny), nocny, wysoki kontrast ── */
   :root {
+    color-scheme: light;
     --sand: #efebe3;
     --sand-deep: #e3ddd1;
     --ink: #1d232b;
     --ink-soft: #4a525c;
     --night: #0f1a2b;
     --paper-on-night: #f4f1ea;
+    --on-night-soft: rgba(244,241,234,.78);
     --line: #1d232b;
+    --field: #f7f4ee;
+    --placeholder: #656b72;
+    --err: #8a2c1f;
+    --bar-bg: rgba(239,235,227,.92);
+    --bar-edge: rgba(29,35,43,.08);
+    --foot-edge: transparent;
+    --img-filter: none;
+    --soft: .7;
     --mono: "Mono", "Courier New", monospace;
     --serif: "Serif", Georgia, serif;
   }
+  :root[data-theme="night"] {
+    color-scheme: dark;
+    --sand: #121924;
+    --sand-deep: #1a2330;
+    --ink: #e6e1d6;
+    --ink-soft: #aab0b8;
+    --night: #0a1019;
+    --paper-on-night: #e6e1d6;
+    --on-night-soft: rgba(230,225,214,.8);
+    --line: #e6e1d6;
+    --field: #1a2330;
+    --placeholder: #8f969e;
+    --err: #f2a493;
+    --bar-bg: rgba(18,25,36,.94);
+    --bar-edge: rgba(230,225,214,.1);
+    --foot-edge: rgba(230,225,214,.12);
+    --img-filter: brightness(.82) saturate(.9);
+    --soft: .78;
+  }
+  :root[data-theme="contrast"] {
+    color-scheme: dark;
+    --sand: #000;
+    --sand-deep: #000;
+    --ink: #fff;
+    --ink-soft: #fff;
+    --night: #000;
+    --paper-on-night: #fff;
+    --on-night-soft: #fff;
+    --line: #fff;
+    --field: #000;
+    --placeholder: #d6d6d6;
+    --err: #ffb3a6;
+    --bar-bg: #000;
+    --bar-edge: #fff;
+    --foot-edge: #fff;
+    --img-filter: none;
+    --soft: 1;
+    --focus: #ffd400;
+  }
+  :focus-visible { outline: 3px solid var(--focus, currentColor); outline-offset: 3px; }
+  :root[data-theme="contrast"] a:not(.wordmark) { text-decoration: underline !important; text-underline-offset: 4px; }
+  :root[data-theme="contrast"] .hero { background-image: linear-gradient(180deg, rgba(0,0,0,.7), rgba(0,0,0,.55) 50%, rgba(0,0,0,.9)), url(/assets/img/hero.jpg) !important; }
+  :root[data-theme="contrast"] .btn, :root[data-theme="contrast"] form.sub input, :root[data-theme="contrast"] .cta, :root[data-theme="contrast"] .news { border-width: 2px; }
+  figure img { filter: var(--img-filter); }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body { background: var(--sand); color: var(--ink); font-family: var(--serif); -webkit-font-smoothing: antialiased; }
@@ -99,7 +164,7 @@
     transition: background .4s, color .4s;
   }
   .bar.dim { background: rgba(15,26,43,.88); backdrop-filter: blur(6px); }
-  .bar.light { background: rgba(239,235,227,.92); color: var(--ink); backdrop-filter: blur(6px); box-shadow: 0 1px 0 rgba(29,35,43,.08); }
+  .bar.light { background: var(--bar-bg); color: var(--ink); backdrop-filter: blur(6px); box-shadow: 0 1px 0 var(--bar-edge); }
   .bar .wordmark { font-family: var(--mono); font-weight: 700; font-size: 15px; letter-spacing: .02em; white-space: nowrap; text-decoration: none; color: inherit; }
   .bar svg { flex: 1; min-width: 0; height: 28px; overflow: visible; }
   .bar .count { font-family: var(--mono); font-size: 13px; white-space: nowrap; min-width: 12ch; text-align: right; font-variant-numeric: tabular-nums; }
@@ -152,10 +217,10 @@
   .btn.solid { background: var(--ink); color: var(--sand); }
   .btn:hover { background: var(--ink); color: var(--sand); }
   form.sub { display: flex; gap: 0; }
-  form.sub input { flex: 1; min-width: 0; font-family: var(--mono); font-size: 1rem; padding: 16px 16px; border: 1.5px solid var(--ink); border-right: 0; background: #f7f4ee; color: var(--ink); }
-  form.sub input::placeholder { color: #8a8f95; }
+  form.sub input { flex: 1; min-width: 0; font-family: var(--mono); font-size: 1rem; padding: 16px 16px; border: 1.5px solid var(--ink); border-right: 0; background: var(--field); color: var(--ink); }
+  form.sub input::placeholder { color: var(--placeholder); opacity: 1; }
   .note.ok { color: var(--ink); font-weight: 700; }
-  .note.err { color: #8a2c1f; }
+  .note.err { color: var(--err); }
   form.sub button[disabled] { opacity: .6; cursor: wait; }
   .note a { color: inherit; }
   .note { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); margin-top: 4px; }
@@ -165,7 +230,7 @@
   .sos {
     position: fixed; right: clamp(12px, 3vw, 28px); bottom: clamp(12px, 3vw, 28px); z-index: 20;
     font-family: var(--mono); font-size: 13px; padding: 10px 14px;
-    background: rgba(239,235,227,.95); color: var(--ink); border: 1.5px solid var(--ink); text-decoration: none;
+    background: var(--bar-bg); color: var(--ink); border: 1.5px solid var(--ink); text-decoration: none;
   }
   .sos:hover { background: var(--ink); color: var(--sand); }
 
@@ -192,12 +257,12 @@
   .panel nav li + li { margin-top: 28px; }
   .panel nav a { display: block; color: inherit; text-decoration: none; }
   .panel nav .t { font-family: var(--mono); font-weight: 700; font-size: clamp(1.7rem, 4vw, 2.1rem); line-height: 1.1; }
-  .panel nav .s { display: block; font-family: var(--serif); font-style: italic; font-size: 1rem; opacity: .7; margin-top: 6px; }
+  .panel nav .s { display: block; font-family: var(--serif); font-style: italic; font-size: 1rem; opacity: var(--soft); margin-top: 6px; }
   .panel nav a:hover .t, .panel nav a:focus-visible .t { text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 6px; }
   .panel nav a[aria-current="page"] .t::after { content: " ·"; opacity: .5; }
   .panel .foot { margin-top: auto; font-family: var(--mono); font-size: 13px; line-height: 1.7; display: grid; gap: 18px; }
   .panel .foot .links a { color: inherit; opacity: .85; }
-  .panel .foot .crisis { color: rgba(244,241,234,.8); }
+  .panel .foot .crisis { color: var(--on-night-soft); }
   .panel .foot .crisis a { color: var(--paper-on-night); font-weight: 700; font-size: 14px; text-decoration: none; }
   .panel .foot a { color: inherit; }
   .panel .foot .sep { margin: 0 .7em; opacity: .45; }
@@ -217,10 +282,10 @@
   @media (max-width: 600px) { .news-in > div { flex-direction: column; gap: 2px; } }
 
 
-  footer { background: #0f1a2b; color: rgba(244,241,234,.72); font-family: "Mono", "Courier New", monospace; font-size: 13px; line-height: 1.6; padding: 36px clamp(16px, 6vw, 72px) 96px; }
+  footer { background: var(--night); color: var(--on-night-soft); border-top: 1.5px solid var(--foot-edge); font-family: "Mono", "Courier New", monospace; font-size: 13px; line-height: 1.6; padding: 36px clamp(16px, 6vw, 72px) 96px; }
   footer .foot-in { display: grid; gap: 16px; justify-items: start; }
   footer p { margin: 0; font-size: 13px; line-height: 1.6; color: inherit; }
-  footer a { color: #f4f1ea; }
+  footer a { color: var(--paper-on-night); }
   footer .foot-links { display: flex; align-items: center; flex-wrap: wrap; font-size: 14px; }
   footer .foot-links a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
   footer .foot-links a:hover, footer .foot-links a:focus-visible { text-decoration-thickness: 2px; }
@@ -230,9 +295,26 @@
   footer .foot-help a { text-decoration: none; font-weight: 700; font-size: 14px; }
   footer .nums { white-space: nowrap; }
   footer .sep { margin: 0 .7em; opacity: .45; }
-  footer .foot-meta { font-size: 12px; opacity: .55; }
+  footer .foot-meta { font-size: 12px; opacity: var(--soft); }
   @media (max-width: 600px) { footer .nums { display: block; margin-top: 2px; } }
   .cta { margin-bottom: clamp(72px, 10vw, 112px); }
+
+  /* ── Przełącznik widoku ── */
+  .view-btn { flex: none; display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 12px; font-family: var(--mono); font-weight: 700; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: inherit; background: none; border: 1.5px solid currentColor; cursor: pointer; line-height: 1; }
+  .view-btn svg { width: 18px; height: 18px; flex: none; }
+  .view-btn:hover span, .view-btn[aria-expanded="true"] span { text-decoration: underline; text-underline-offset: 4px; }
+  .view-pop { position: fixed; z-index: 30; top: 64px; right: clamp(16px, 4vw, 40px); width: min(340px, calc(100vw - 32px)); background: var(--sand); color: var(--ink); border: 1.5px solid var(--ink); padding: 18px 20px 8px; box-shadow: 0 12px 32px rgba(0,0,0,.18); }
+  .view-pop[hidden] { display: none; }
+  .view-pop fieldset { border: 0; }
+  .view-pop legend { font-family: var(--mono); font-weight: 700; font-size: 11px; letter-spacing: .3em; text-transform: uppercase; margin-bottom: 8px; }
+  .view-pop label { display: grid; grid-template-columns: 22px 1fr; gap: 2px 12px; align-items: start; padding: 13px 0; border-top: 1px solid color-mix(in srgb, var(--ink) 18%, transparent); cursor: pointer; }
+  .view-pop input { appearance: none; -webkit-appearance: none; width: 20px; height: 20px; margin-top: 1px; border: 2px solid var(--ink); border-radius: 50%; background: transparent; cursor: pointer; }
+  .view-pop input:checked { background: radial-gradient(circle, var(--ink) 0 4.5px, transparent 5px); }
+  .view-pop .vt { font-family: var(--mono); font-weight: 700; font-size: 15px; }
+  .view-pop .vs { grid-column: 2; font-family: var(--serif); font-style: italic; font-size: .95rem; color: var(--ink-soft); line-height: 1.35; }
+  :root[data-theme="contrast"] .view-pop { border-width: 2px; box-shadow: none; }
+  :root[data-theme="contrast"] .view-pop label { border-top-color: #fff; }
+  @media (max-width: 480px) { .view-btn { padding: 0 10px; letter-spacing: .08em; } }
 </style>
 </head>
 <body>
@@ -249,7 +331,21 @@
     </g>
   </svg>
   <span class="count" id="count">0 kroków</span>
+  <button class="view-btn" id="viewBtn" type="button" aria-controls="viewPop" aria-expanded="false" title="Wygląd strony: tryb nocny, wysoki kontrast">
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></svg>
+    <span>Widok</span>
+  </button>
 </header>
+
+<div class="view-pop" id="viewPop" role="dialog" aria-label="Wygląd strony" hidden>
+  <fieldset>
+    <legend>Wygląd strony</legend>
+    <label><input type="radio" name="view" value="auto"><span class="vt">Automatycznie</span><span class="vs">Tak jak w ustawieniach telefonu lub komputera</span></label>
+    <label><input type="radio" name="view" value="light"><span class="vt">Jasny</span><span class="vs">Piasek i atrament, na dzień</span></label>
+    <label><input type="radio" name="view" value="night"><span class="vt">Nocny</span><span class="vs">Ciemne tło, łagodniejsze dla oczu po zmroku</span></label>
+    <label><input type="radio" name="view" value="contrast"><span class="vt">Wysoki kontrast</span><span class="vs">Biel na czerni, największa czytelność</span></label>
+  </fieldset>
+</div>
 
 <section class="hero" id="top">
   <h1>40000<br>kroków</h1>
@@ -461,6 +557,35 @@
   scrim.addEventListener('click', shut);
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && document.body.classList.contains('menu-open')) shut(); });
   panel.addEventListener('click', function (e) { var a = e.target.closest('a'); if (a && a.getAttribute('href').charAt(0) === '#') shut(); });
+})();
+</script>
+<script>
+(function () {
+  var root = document.documentElement, btn = document.getElementById('viewBtn'),
+      pop = document.getElementById('viewPop'), meta = document.querySelector('meta[name="theme-color"]');
+  if (!btn) return;
+  var colors = { light: '#0f1a2b', night: '#121924', contrast: '#000000' };
+  var mq = function (q) { return window.matchMedia ? matchMedia(q) : { matches: false, addEventListener: function () {} }; };
+  var dark = mq('(prefers-color-scheme: dark)'), more = mq('(prefers-contrast: more)'), forced = mq('(forced-colors: active)');
+  function pref() { try { return localStorage.getItem('view') || 'auto'; } catch (e) { return 'auto'; } }
+  function apply(p) {
+    var t = p !== 'auto' ? p : (more.matches || forced.matches) ? 'contrast' : dark.matches ? 'night' : 'light';
+    root.setAttribute('data-theme', t); root.setAttribute('data-view', p);
+    if (meta) meta.setAttribute('content', colors[t]);
+    var r = pop.querySelector('input[value="' + p + '"]'); if (r) r.checked = true;
+  }
+  [dark, more, forced].forEach(function (m) { if (m.addEventListener) m.addEventListener('change', function () { if (pref() === 'auto') apply('auto'); }); });
+  pop.addEventListener('change', function (e) {
+    if (e.target.name !== 'view') return;
+    try { localStorage.setItem('view', e.target.value); } catch (err) {}
+    apply(e.target.value);
+  });
+  function open() { pop.hidden = false; btn.setAttribute('aria-expanded', 'true'); (pop.querySelector('input:checked') || pop.querySelector('input')).focus(); }
+  function shut(back) { pop.hidden = true; btn.setAttribute('aria-expanded', 'false'); if (back) btn.focus(); }
+  btn.addEventListener('click', function () { pop.hidden ? open() : shut(); });
+  document.addEventListener('click', function (e) { if (!pop.hidden && !pop.contains(e.target) && !btn.contains(e.target)) shut(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !pop.hidden) shut(true); });
+  apply(pref());
 })();
 </script>
 </body>
