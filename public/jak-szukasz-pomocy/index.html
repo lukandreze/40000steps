@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<title>Jak szukasz pomocy — ankieta, edycja 1 · 40000 kroków</title>
+<meta name="description" content="Ile prób, miesięcy i pieniędzy kosztuje trafienie do właściwego psychiatry albo psychoterapeuty? Anonimowa ankieta, około 6 minut. Edycja 1: 21 października – 30 listopada 2026.">
+<link rel="canonical" href="https://40000steps.com/jak-szukasz-pomocy/">
+<meta property="og:title" content="Jak szukasz pomocy — anonimowa ankieta">
+<meta property="og:description" content="Ile prób, miesięcy i pieniędzy kosztuje trafienie do właściwego specjalisty? Około 6 minut, do 30 listopada.">
+<meta property="og:image" content="https://40000steps.com/assets/img/beach-6325.jpg">
+<meta property="og:url" content="https://40000steps.com/jak-szukasz-pomocy/">
+<meta property="og:type" content="website">
+<meta property="og:image:alt" content="Zadeptany piasek, setki śladów w różnych kierunkach">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:site_name" content="40000 kroków">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0f1a2b">
+<script>
+/* Tryb widoku ustawiany przed pierwszym renderem, bez mignięcia */
+(function () {
+  var pref = "auto"; try { pref = localStorage.getItem("view") || "auto"; } catch (e) {}
+  var m = function (q) { return window.matchMedia && matchMedia(q).matches; };
+  var t = pref !== "auto" ? pref : m("(prefers-contrast: more)") || m("(forced-colors: active)") ? "contrast" : m("(prefers-color-scheme: dark)") ? "night" : "light";
+  document.documentElement.setAttribute("data-theme", t);
+  document.documentElement.setAttribute("data-view", pref);
+})();
+</script>
+<style>
+  /* Fonts (self-hosted) */
+  @font-face { font-family: "Serif"; font-weight: 400; font-style: normal; font-display: swap; src: url(/assets/fonts/source-serif-4-latin-400-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+20AC, U+2122; }
+  @font-face { font-family: "Serif"; font-weight: 400; font-style: normal; font-display: swap; src: url(/assets/fonts/source-serif-4-latin-ext-400-normal.woff2) format("woff2"); unicode-range: U+0100-024F, U+1E00-1EFF; }
+  @font-face { font-family: "Serif"; font-weight: 400; font-style: italic; font-display: swap; src: url(/assets/fonts/source-serif-4-latin-400-italic.woff2) format("woff2"); unicode-range: U+0000-00FF, U+2000-206F; }
+  @font-face { font-family: "Serif"; font-weight: 400; font-style: italic; font-display: swap; src: url(/assets/fonts/source-serif-4-latin-ext-400-italic.woff2) format("woff2"); unicode-range: U+0100-024F; }
+  @font-face { font-family: "Serif"; font-weight: 600; font-style: normal; font-display: swap; src: url(/assets/fonts/source-serif-4-latin-600-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+2000-206F; }
+  @font-face { font-family: "Serif"; font-weight: 600; font-style: normal; font-display: swap; src: url(/assets/fonts/source-serif-4-latin-ext-600-normal.woff2) format("woff2"); unicode-range: U+0100-024F; }
+  @font-face { font-family: "Mono"; font-weight: 400; font-display: swap; src: url(/assets/fonts/courier-prime-latin-400-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+2000-206F; }
+  @font-face { font-family: "Mono"; font-weight: 400; font-display: swap; src: url(/assets/fonts/courier-prime-latin-ext-400-normal.woff2) format("woff2"); unicode-range: U+0100-024F; }
+  @font-face { font-family: "Mono"; font-weight: 700; font-display: swap; src: url(/assets/fonts/courier-prime-latin-700-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+2000-206F; }
+  @font-face { font-family: "Mono"; font-weight: 700; font-display: swap; src: url(/assets/fonts/courier-prime-latin-ext-700-normal.woff2) format("woff2"); unicode-range: U+0100-024F; }
+
+  /* ── Tryby widoku: jasny (domyślny), nocny, wysoki kontrast ── */
+  :root {
+    color-scheme: light;
+    --sand: #efebe3;
+    --sand-deep: #e3ddd1;
+    --ink: #1d232b;
+    --ink-soft: #4a525c;
+    --night: #0f1a2b;
+    --paper-on-night: #f4f1ea;
+    --on-night-soft: rgba(244,241,234,.78);
+    --line: #1d232b;
+    --field: #f7f4ee;
+    --placeholder: #656b72;
+    --err: #8a2c1f;
+    --bar-bg: rgba(239,235,227,.92);
+    --bar-edge: rgba(29,35,43,.08);
+    --foot-edge: transparent;
+    --img-filter: none;
+    --soft: .7;
+    --mono: "Mono", "Courier New", monospace;
+    --serif: "Serif", Georgia, serif;
+  }
+  :root[data-theme="night"] {
+    color-scheme: dark;
+    --sand: #121924;
+    --sand-deep: #1a2330;
+    --ink: #e6e1d6;
+    --ink-soft: #aab0b8;
+    --night: #0a1019;
+    --paper-on-night: #e6e1d6;
+    --on-night-soft: rgba(230,225,214,.8);
+    --line: #e6e1d6;
+    --field: #1a2330;
+    --placeholder: #8f969e;
+    --err: #f2a493;
+    --bar-bg: rgba(18,25,36,.94);
+    --bar-edge: rgba(230,225,214,.1);
+    --foot-edge: rgba(230,225,214,.12);
+    --img-filter: brightness(.82) saturate(.9);
+    --soft: .78;
+  }
+  :root[data-theme="contrast"] {
+    color-scheme: dark;
+    --sand: #000;
+    --sand-deep: #000;
+    --ink: #fff;
+    --ink-soft: #fff;
+    --night: #000;
+    --paper-on-night: #fff;
+    --on-night-soft: #fff;
+    --line: #fff;
+    --field: #000;
+    --placeholder: #d6d6d6;
+    --err: #ffb3a6;
+    --bar-bg: #000;
+    --bar-edge: #fff;
+    --foot-edge: #fff;
+    --img-filter: none;
+    --soft: 1;
+    --focus: #ffd400;
+  }
+  :focus-visible { outline: 3px solid var(--focus, currentColor); outline-offset: 3px; }
+  :root[data-theme="contrast"] a:not(.wordmark) { text-decoration: underline !important; text-underline-offset: 4px; }
+  :root[data-theme="contrast"] .hero { background-image: linear-gradient(180deg, rgba(0,0,0,.7), rgba(0,0,0,.55) 50%, rgba(0,0,0,.9)), url(/assets/img/hero.jpg) !important; }
+  :root[data-theme="contrast"] .btn, :root[data-theme="contrast"] form.sub input, :root[data-theme="contrast"] .cta, :root[data-theme="contrast"] .news { border-width: 2px; }
+  figure img { filter: var(--img-filter); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--sand); color: var(--ink); font-family: var(--serif); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+
+  .bar { position: absolute; inset: 0 0 auto 0; z-index: 20; height: 56px; display: flex; align-items: center; gap: 16px; padding: 0 clamp(16px, 4vw, 40px); color: var(--paper-on-night); }
+  .bar .wordmark { font-family: var(--mono); font-weight: 700; font-size: 15px; text-decoration: none; color: inherit; }
+
+  .hero { min-height: 72vh; min-height: 72svh; display: flex; flex-direction: column; justify-content: flex-end; color: var(--paper-on-night);
+    padding: 96px clamp(16px, 6vw, 72px) clamp(32px, 6vw, 64px);
+    background: linear-gradient(180deg, rgba(10,18,32,.6) 0%, rgba(10,18,32,.15) 40%, rgba(10,18,32,.75) 100%), url(/assets/img/beach-6341.jpg) center 40% / cover no-repeat var(--night); }
+  .hero h1 { font-family: var(--mono); font-weight: 700; font-size: clamp(3rem, 10vw, 7rem); line-height: .92; letter-spacing: -.02em; }
+  .hero .kicker { font-family: var(--mono); font-weight: 700; font-size: clamp(1rem, 1.9vw, 1.35rem); letter-spacing: .2em; text-transform: uppercase; margin-top: clamp(14px, 2vw, 24px); }
+  .hero .kicker span { white-space: nowrap; }
+  .hero .kicker .sep { margin: 0 .6em; opacity: .5; }
+  @media (max-width: 600px) { .hero .kicker { display: grid; gap: 4px; } .hero .kicker .sep { display: none; } }
+
+  main { padding: clamp(56px, 9vw, 104px) clamp(16px, 5vw, 32px) 0; }
+  .col { max-width: 36rem; margin: 0 auto; }
+  .lead { font-size: clamp(1.25rem, 2.2vw, 1.5rem); line-height: 1.55; }
+  h2 { font-family: var(--mono); font-weight: 700; font-size: 1.05rem; letter-spacing: .14em; text-transform: uppercase; margin: 3em 0 1.2em; }
+  p { font-size: clamp(1.08rem, 1.5vw, 1.18rem); line-height: 1.7; margin-bottom: 1.1em; }
+
+  dl.facts { margin-top: 48px; border-top: 1.5px solid var(--ink); }
+  dl.facts > div { display: grid; grid-template-columns: 11ch 1fr; gap: 16px; padding: 18px 0; border-bottom: 1px solid color-mix(in srgb, var(--ink) 20%, transparent); }
+  dl.facts dt { font-family: var(--mono); font-weight: 700; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; padding-top: 4px; }
+  dl.facts dd { font-size: 1.12rem; line-height: 1.55; }
+  dl.facts dd small { display: block; font-size: .95rem; color: var(--ink-soft); margin-top: 2px; }
+  .tbd { background: #f3e2b8; color: #1d232b; padding: 0 4px; }
+
+  ol.steps { list-style: none; counter-reset: s; }
+  ol.steps li { counter-increment: s; display: grid; grid-template-columns: 3ch 1fr; gap: 12px; font-size: 1.1rem; line-height: 1.65; margin-bottom: 14px; }
+  ol.steps li::before { content: counter(s, decimal-leading-zero); font-family: var(--mono); font-weight: 700; font-size: .95rem; padding-top: 3px; }
+
+  .btn { font-family: var(--mono); font-size: 1rem; display: inline-flex; justify-content: center; align-items: center; gap: 10px; padding: 14px 20px; border: 1.5px solid var(--ink); color: var(--ink); text-decoration: none; background: transparent; cursor: pointer; }
+  .btn.solid { background: var(--ink); color: var(--sand); }
+  .btn:hover, .btn:focus-visible { background: var(--ink); color: var(--sand); }
+  dl.facts a.place { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  dl.facts a.place:hover { text-decoration-thickness: 2px; }
+
+  .rsvp { margin-top: clamp(56px, 8vw, 88px); padding-top: 40px; border-top: 1.5px solid var(--ink); }
+  .rsvp h2 { margin-top: 0; }
+  .rsvp form { display: grid; gap: 14px; }
+  .rsvp label { font-family: var(--mono); font-size: 13px; letter-spacing: .1em; text-transform: uppercase; display: grid; gap: 6px; }
+  .rsvp input { font-family: var(--mono); font-size: 1rem; text-transform: none; letter-spacing: 0; padding: 15px 16px; border: 1.5px solid var(--ink); background: var(--field); color: var(--ink); }
+  .rsvp input:focus { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .rsvp .btn { margin-top: 6px; }
+  .note { font-family: var(--mono); font-size: 12px; line-height: 1.6; color: var(--ink-soft); }
+  .note.err { color: var(--err); }
+  .done { display: none; }
+  .done.on { display: block; }
+  .done .big { font-family: var(--mono); font-weight: 700; font-size: clamp(1.4rem, 3vw, 1.8rem); line-height: 1.3; margin-bottom: 16px; }
+
+
+
+  /* ── Menu ── */
+  .menu-btn { font-family: var(--mono); font-weight: 700; font-size: 16px; letter-spacing: .14em; text-transform: uppercase; background: none; border: 0; color: inherit; cursor: pointer; padding: 10px 14px 10px 0; margin-right: 6px; border-right: 1.5px solid currentColor; line-height: 1; }
+  .menu-btn:hover, .menu-btn:focus-visible { text-decoration: underline; text-underline-offset: 4px; }
+  .scrim { position: fixed; inset: 0; z-index: 40; background: rgba(10,18,32,.35); opacity: 0; visibility: hidden; transition: opacity .35s ease, visibility 0s linear .35s; }
+  .panel { position: fixed; top: 0; left: 0; bottom: 0; z-index: 50; width: min(420px, 100vw);
+    background: var(--night); color: var(--paper-on-night);
+    padding: 22px clamp(24px, 4vw, 40px) 32px; display: flex; flex-direction: column;
+    transform: translateX(-100%); visibility: hidden;
+    transition: transform .45s cubic-bezier(.2,.7,.2,1), visibility 0s linear .45s; }
+  body.menu-open .scrim { opacity: 1; visibility: visible; transition: opacity .35s ease; }
+  body.menu-open .panel { transform: none; visibility: visible; transition: transform .45s cubic-bezier(.2,.7,.2,1); }
+  body.menu-open { overflow: hidden; }
+  .panel .close { align-self: flex-start; font-family: var(--mono); font-weight: 700; font-size: 16px; letter-spacing: .12em; text-transform: uppercase; background: none; border: 0; color: inherit; cursor: pointer; padding: 8px 0; }
+  .panel .close:hover, .panel .close:focus-visible { text-decoration: underline; text-underline-offset: 4px; }
+  .panel nav { margin-top: clamp(40px, 10vh, 96px); }
+  .panel nav ul { list-style: none; }
+  .panel nav li + li { margin-top: 28px; }
+  .panel nav a { display: block; color: inherit; text-decoration: none; }
+  .panel nav .t { font-family: var(--mono); font-weight: 700; font-size: clamp(1.7rem, 4vw, 2.1rem); line-height: 1.1; }
+  .panel nav .s { display: block; font-family: var(--serif); font-style: italic; font-size: 1rem; opacity: var(--soft); margin-top: 6px; }
+  .panel nav a:hover .t, .panel nav a:focus-visible .t { text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 6px; }
+  .panel nav a[aria-current="page"] .t::after { content: " ·"; opacity: .5; }
+  .panel .foot { margin-top: auto; font-family: var(--mono); font-size: 13px; line-height: 1.7; display: grid; gap: 18px; }
+  .panel .foot .links a { color: inherit; opacity: .85; }
+  .panel .foot .crisis { color: var(--on-night-soft); }
+  .panel .foot .crisis a { color: var(--paper-on-night); font-weight: 700; font-size: 14px; text-decoration: none; }
+  .panel .foot a { color: inherit; }
+  .panel .foot .sep { margin: 0 .7em; opacity: .45; }
+  @media (prefers-reduced-motion: reduce) { .panel, .scrim, body.menu-open .panel, body.menu-open .scrim { transition: none; } }
+
+
+  footer { background: var(--night); color: var(--on-night-soft); border-top: 1.5px solid var(--foot-edge); font-family: "Mono", "Courier New", monospace; font-size: 13px; line-height: 1.6; padding: 36px clamp(16px, 6vw, 72px) 96px; }
+  footer .foot-in { display: grid; gap: 16px; justify-items: start; }
+  footer p { margin: 0; font-size: 13px; line-height: 1.6; color: inherit; }
+  footer a { color: var(--paper-on-night); }
+  footer .foot-links { display: flex; align-items: center; flex-wrap: wrap; font-size: 14px; }
+  footer .foot-links a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  footer .foot-links a:hover, footer .foot-links a:focus-visible { text-decoration-thickness: 2px; }
+  footer a.contact { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; }
+  footer a.contact span { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  footer a.contact:hover span, footer a.contact:focus-visible span { text-decoration-thickness: 2px; }
+  footer .foot-help a { text-decoration: none; font-weight: 700; font-size: 14px; }
+  footer .nums { white-space: nowrap; }
+  footer .sep { margin: 0 .7em; opacity: .45; }
+  footer .foot-meta { font-size: 12px; opacity: var(--soft); }
+  @media (max-width: 600px) { footer .nums { display: block; margin-top: 2px; } }
+  .rsvp { margin-bottom: clamp(72px, 10vw, 112px); }
+  /* ── Przełącznik widoku ── */
+  .view-btn { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; margin-right: -10px; color: inherit; background: none; border: 0; border-radius: 50%; cursor: pointer; }
+  .view-btn svg { width: 22px; height: 22px; flex: none; transition: transform .3s; }
+  .view-btn:hover svg, .view-btn[aria-expanded="true"] svg { transform: rotate(180deg); }
+  @media (prefers-reduced-motion: reduce) { .view-btn svg { transition: none; } }
+  .view-pop { position: fixed; z-index: 30; top: 64px; right: clamp(16px, 4vw, 40px); width: min(340px, calc(100vw - 32px)); background: var(--sand); color: var(--ink); border: 1.5px solid var(--ink); padding: 18px 20px 8px; box-shadow: 0 12px 32px rgba(0,0,0,.18); }
+  .view-pop[hidden] { display: none; }
+  .view-pop fieldset { border: 0; }
+  .view-pop legend { font-family: var(--mono); font-weight: 700; font-size: 11px; letter-spacing: .3em; text-transform: uppercase; margin-bottom: 8px; }
+  .view-pop label { display: grid; grid-template-columns: 22px 1fr; gap: 2px 12px; align-items: start; padding: 13px 0; border-top: 1px solid color-mix(in srgb, var(--ink) 18%, transparent); cursor: pointer; }
+  .view-pop input { appearance: none; -webkit-appearance: none; width: 20px; height: 20px; margin-top: 1px; border: 2px solid var(--ink); border-radius: 50%; background: transparent; cursor: pointer; }
+  .view-pop input:checked { background: radial-gradient(circle, var(--ink) 0 4.5px, transparent 5px); }
+  .view-pop .vt { font-family: var(--mono); font-weight: 700; font-size: 15px; }
+  .view-pop .vs { grid-column: 2; font-family: var(--serif); font-style: italic; font-size: .95rem; color: var(--ink-soft); line-height: 1.35; }
+  :root[data-theme="contrast"] .view-pop { border-width: 2px; box-shadow: none; }
+  :root[data-theme="contrast"] .view-pop label { border-top-color: #fff; }
+  .view-btn { margin-left: auto; }
+  .rsvp { margin-bottom: 0; }
+  .walked { margin: clamp(56px, 8vw, 88px) 0 clamp(72px, 10vw, 112px); padding-top: 40px; border-top: 1.5px solid var(--ink); }
+  .walked h2 { margin-top: 0; }
+  .walk-entry + .walk-entry { margin-top: 36px; }
+  .walk-date { font-family: var(--mono); font-size: 13px !important; color: var(--ink-soft); margin-bottom: .6em !important; }
+  .walk-date .sep { margin: 0 .7em; opacity: .45; }
+
+  /* ── Jak szukasz pomocy ── */
+  .hero { background: linear-gradient(180deg, rgba(10,18,32,.62) 0%, rgba(10,18,32,.2) 40%, rgba(10,18,32,.78) 100%), url(/assets/img/beach-6325.jpg) center 45% / cover no-repeat var(--night); }
+  :root[data-theme="contrast"] .hero { background-image: linear-gradient(180deg, rgba(0,0,0,.7), rgba(0,0,0,.55) 50%, rgba(0,0,0,.9)), url(/assets/img/beach-6325.jpg) !important; }
+  .crisis-line { font-family: var(--mono); font-size: 14px !important; line-height: 1.6 !important; padding: 14px 0; margin-bottom: 40px !important; border-top: 1.5px solid var(--ink); border-bottom: 1px solid color-mix(in srgb, var(--ink) 20%, transparent); }
+  .crisis-line a { font-weight: 700; text-decoration: none; white-space: nowrap; }
+  .crisis-line .sep { margin: 0 .6em; opacity: .45; }
+
+  .survey { margin-top: 48px; border: 1.5px solid var(--ink); background: var(--field); padding: clamp(22px, 4vw, 40px); scroll-margin-top: 24px; }
+  :root[data-theme="contrast"] .survey { border-width: 2px; }
+  .sv-top { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; font-family: var(--mono); font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-soft); }
+  .sv-top .sv-count { letter-spacing: .04em; text-transform: none; font-size: 13px; white-space: nowrap; }
+  @media (max-width: 480px) { .sv-top { letter-spacing: .1em; } }
+  .sv-bar { height: 2px; margin: 14px 0 30px; background: color-mix(in srgb, var(--ink) 15%, transparent); }
+  .sv-bar i { display: block; height: 2px; width: 0; background: var(--ink); transition: width .3s ease; }
+  @media (prefers-reduced-motion: reduce) { .sv-bar i { transition: none; } }
+  .survey fieldset { border: 0; min-width: 0; }
+  .sv-legend { padding: 0; }
+  .sv-legend:focus { outline: none; }
+  .sv-sec { display: block; font-family: var(--mono); font-weight: 700; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 10px; }
+  .sv-q { display: block; font-family: var(--serif); font-weight: 600; font-size: clamp(1.2rem, 2.4vw, 1.42rem); line-height: 1.35; }
+  .sv-hint { font-style: italic; color: var(--ink-soft); font-size: 1rem !important; margin: 8px 0 0 !important; }
+  .sv-big { font-family: var(--mono); font-weight: 700; font-size: clamp(1.35rem, 2.8vw, 1.7rem); line-height: 1.3; margin-bottom: 18px; }
+  .sv-big:focus { outline: none; }
+  .sv-opts { display: grid; gap: 8px; margin-top: 18px; }
+  .sv-opts.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (max-width: 640px) { .sv-opts.two { grid-template-columns: 1fr; } }
+  .sv-opt { display: grid; grid-template-columns: 20px 1fr; gap: 12px; align-items: start; padding: 12px 14px; min-height: 48px; border: 1.5px solid color-mix(in srgb, var(--ink) 35%, transparent); cursor: pointer; font-size: 1.02rem; line-height: 1.4; }
+  .sv-opt:hover { border-color: var(--ink); }
+  .sv-opt input { appearance: none; -webkit-appearance: none; width: 18px; height: 18px; margin: 2px 0 0; border: 1.5px solid currentColor; background: transparent; cursor: pointer; }
+  .sv-opt input[type="radio"] { border-radius: 50%; }
+  .sv-opt:has(input:checked) { background: var(--ink); color: var(--sand); border-color: var(--ink); }
+  .sv-opt input[type="radio"]:checked { background: radial-gradient(circle, currentColor 0 3.5px, transparent 4px); }
+  .sv-opt input[type="checkbox"]:checked { background: currentColor; }
+  .sv-opt:has(input:focus-visible) { outline: 3px solid var(--focus, var(--ink)); outline-offset: 2px; }
+  .sv-group + .sv-group { margin-top: 22px; }
+  .sv-glabel { font-family: var(--mono); font-weight: 700; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 10px; padding: 0; }
+  .sv-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .sv-chip { position: relative; display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 52px; padding: 10px 16px; border: 1.5px solid color-mix(in srgb, var(--ink) 35%, transparent); font-family: var(--mono); font-size: 15px; cursor: pointer; }
+  .sv-chip:hover { border-color: var(--ink); }
+  .sv-chip input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+  .sv-chip:has(input:checked) { background: var(--ink); color: var(--sand); border-color: var(--ink); }
+  .sv-chip:has(input:focus-visible) { outline: 3px solid var(--focus, var(--ink)); outline-offset: 2px; }
+  .sv-scale-ends { display: flex; justify-content: space-between; max-width: 22rem; margin-top: 8px; font-family: var(--mono); font-size: 12px; color: var(--ink-soft); }
+  .sv-scale .sv-chips { max-width: 22rem; justify-content: space-between; }
+  .sv-text { display: grid; gap: 8px; margin-top: 18px; font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); }
+  .sv-text textarea { font-family: var(--serif); font-size: 1.05rem; line-height: 1.55; text-transform: none; letter-spacing: 0; color: var(--ink); padding: 14px 16px; border: 1.5px solid var(--ink); background: var(--sand); resize: vertical; min-height: 9rem; }
+  .sv-consent { display: grid; grid-template-columns: 22px 1fr; gap: 12px; align-items: start; margin-top: 22px; font-size: 1.02rem; line-height: 1.55; cursor: pointer; }
+  .sv-consent input { appearance: none; -webkit-appearance: none; width: 20px; height: 20px; margin-top: 3px; border: 2px solid var(--ink); background: transparent; cursor: pointer; }
+  .sv-consent input:checked { background: var(--ink); box-shadow: inset 0 0 0 3px var(--field); }
+  .sv-nav { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+  .sv-nav .grow { flex: 1; }
+  .btn[disabled] { opacity: .4; cursor: not-allowed; }
+  .btn[disabled]:hover { background: transparent; color: var(--ink); }
+  .btn.solid[disabled]:hover { background: var(--ink); color: var(--sand); }
+  .sv-msg { margin-top: 14px !important; }
+  .sv-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .sv-end p { font-size: 1.1rem; }
+  .under { margin-top: 12px; }
+  .results { margin-top: clamp(56px, 8vw, 88px); padding-top: 40px; border-top: 1.5px solid var(--ink); margin-bottom: clamp(72px, 10vw, 112px); }
+  .results h2 { margin-top: 0; }
+  form.sub { display: flex; gap: 0; margin-top: 8px; }
+  form.sub input { flex: 1; min-width: 0; font-family: var(--mono); font-size: 1rem; padding: 16px; border: 1.5px solid var(--ink); border-right: 0; background: var(--field); color: var(--ink); }
+  form.sub input::placeholder { color: var(--placeholder); opacity: 1; }
+  form.sub button[disabled] { opacity: .6; cursor: wait; }
+  .results .note { margin-top: 12px; }
+  .note.ok { color: var(--ink); }
+  .sos { position: fixed; right: clamp(12px, 3vw, 28px); bottom: clamp(12px, 3vw, 28px); z-index: 20; font-family: var(--mono); font-size: 13px; padding: 10px 14px; background: var(--bar-bg); color: var(--ink); border: 1.5px solid var(--ink); text-decoration: none; }
+  .sos:hover { background: var(--ink); color: var(--sand); }
+</style>
+</head>
+<body>
+<header class="bar">
+  <button class="menu-btn" id="menuBtn" type="button" aria-controls="menu" aria-expanded="false">Menu</button>
+  <a class="wordmark" href="/">40000steps</a>
+  <button class="view-btn" id="viewBtn" type="button" aria-controls="viewPop" aria-expanded="false" aria-label="Wygląd strony: jasny, nocny, wysoki kontrast" title="Wygląd strony">
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></svg>
+  </button>
+</header>
+
+<section class="hero">
+  <h1>Jak szukasz pomocy</h1>
+  <p class="kicker"><span>Edycja 1</span><span class="sep">|</span><span>21.10 – 30.11</span><span class="sep">|</span><span>Około 6 minut</span></p>
+</section>
+
+<main>
+  <div class="col">
+    <p class="crisis-line">Jeśli jest Ci teraz bardzo ciężko, nie zaczynaj od ankiety. Zadzwoń: <a href="tel:800702222">800 70 2222</a><span class="sep">|</span><a href="tel:116123">116 123</a><span class="sep">|</span><a href="tel:112">112</a></p>
+
+    <p class="lead">Ile prób, miesięcy i pieniędzy kosztuje trafienie do właściwego psychiatry albo psychoterapeuty? Nikt w Polsce tego nie liczy. Chcę to policzyć razem z Tobą.</p>
+
+    <dl class="facts">
+      <div><dt>Ile trwa</dt><dd>Około 6 minut<small>Każde pytanie możesz pominąć, ankietę przerwać w dowolnym momencie.</small></dd></div>
+      <div><dt>Dla kogo</dt><dd>Dla każdego, kto jest pełnoletni<small>Także jeśli pomocy jeszcze nie szukałeś(-aś) – wtedy to trzy pytania.</small></dd></div>
+      <div><dt>Dane</dt><dd>Anonimowo<small>Nie pytam o imię, adres e-mail ani diagnozę. Nie zapisuję adresu IP. Odpowiedzi są przechowywane w Unii Europejskiej.</small></dd></div>
+      <div><dt>Kiedy</dt><dd>Od 21 października do 30 listopada 2026<small>Potem zamykam ankietę i opisuję wyniki w tym miejscu.</small></dd></div>
+    </dl>
+
+    <h2>Po co to robię</h2>
+    <p>Sam wiem, jak to jest: pierwsza wizyta, która nic nie daje, druga, po której nie chce się szukać dalej. Każda kosztuje, a w tym czasie nic nie mija.</p>
+    <p>Mówię wprost: Twoje odpowiedzi pomogą mi zbudować bezpłatne dla pacjentów narzędzie, dzięki któremu łatwiej i szybciej trafisz do specjalisty, jakiego naprawdę potrzebujesz.</p>
+    <p>Co ważne: nie sprzedam zebranych tu danych i nikomu ich nie przekażę.</p>
+
+    <section class="survey" id="ankieta" aria-label="Ankieta">
+      <div class="sv-top"><span>Ankieta · Edycja 1</span><span class="sv-count" id="svCount">Około 6 minut</span></div>
+      <div class="sv-bar" aria-hidden="true"><i id="svBar"></i></div>
+      <div id="svBody">
+        <p>Ankieta potrzebuje włączonego JavaScriptu. Jeśli wolisz, <a href="mailto:lukasz@40000steps.com">napisz do mnie</a> – opowiedz swoją drogę po swojemu.</p>
+      </div>
+    </section>
+    <p class="note under">Odpowiedzi trafiają na serwer tej strony (Cloudflare, baza w UE). Szczegóły w <a href="/prywatnosc/">polityce prywatności</a>.</p>
+
+    <h2>Co dalej</h2>
+    <ol class="steps">
+      <li>Zbieram odpowiedzi od 21 października do 30 listopada.</li>
+      <li>Opisuję wyniki tutaj i w „Zapisane podczas spaceru”. Zbiorczo, tak żeby nikogo nie dało się rozpoznać.</li>
+      <li>Kolejna edycja będzie, kiedy będzie miała sens. Dam znać.</li>
+    </ol>
+
+    <section class="results" id="wyniki">
+      <h2>Chcesz zobaczyć wyniki?</h2>
+      <p>Zostaw adres. Napiszę, kiedy będą gotowe.</p>
+      <form class="sub" id="ml-form" method="post" novalidate
+            action="https://assets.mailerlite.com/jsonp/2711601/forms/201295463689749769/subscribe">
+        <input type="email" name="fields[email]" required autocomplete="email" placeholder="twój@adres.pl" aria-label="Adres e-mail">
+        <input type="hidden" name="ml-submit" value="1">
+        <input type="hidden" name="anticsrf" value="true">
+        <button class="btn" type="submit">Zostaw adres</button>
+      </form>
+      <p class="note" id="ml-msg" role="status">Adres nie łączy się z Twoimi odpowiedziami w ankiecie. Wypiszesz się jednym kliknięciem. <a href="/prywatnosc/">Polityka prywatności</a>.</p>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="foot-in">
+    <p class="foot-links"><a href="/prywatnosc/">Prywatność</a><span class="sep">|</span><a class="contact" href="mailto:lukasz@40000steps.com" title="lukasz@40000steps.com"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="1"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg><span>Napisz do mnie</span></a></p>
+    <p class="foot-help" id="pomoc">Jeśli jest Ci teraz bardzo ciężko: <span class="nums"><a href="tel:116123">116 123</a><span class="sep">|</span><a href="tel:800702222">800 70 2222</a><span class="sep">|</span><a href="tel:112">112</a></span></p>
+    <p class="foot-meta">40000steps.com, 2026<span class="sep">|</span>Nie jestem terapeutą, a ta strona nie zastępuje leczenia.</p>
+  </div>
+</footer>
+
+<a class="sos" href="#pomoc">Potrzebujesz pomocy teraz?</a>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="panel" id="menu" aria-label="Menu" hidden>
+  <button class="close" id="menuClose" type="button">✕ Zamknij</button>
+  <nav>
+    <ul>
+      <li><a href="/manifest/"><span class="t">Manifest</span><span class="s">40000 kroków. Skąd to miejsce.</span></a></li>
+      <li><a href="/spacery/"><span class="t">Spacery</span><span class="s">Piątek, 16.10, 17:00 · Sopot</span></a></li>
+      <li><a href="/jak-szukasz-pomocy/" aria-current="page"><span class="t">Jak szukasz pomocy</span><span class="s">Ankieta, edycja 1 · do 30.11</span></a></li>
+    </ul>
+  </nav>
+  <div class="foot">
+    <p class="links"><a href="/prywatnosc/">Prywatność</a><span class="sep">|</span><a href="mailto:lukasz@40000steps.com">Napisz do mnie</a></p>
+    <p class="crisis">Jeśli jest Ci teraz bardzo ciężko:<br><a href="tel:116123">116 123</a><span class="sep">|</span><a href="tel:800702222">800 70 2222</a><span class="sep">|</span><a href="tel:112">112</a></p>
+  </div>
+</aside>
+<script>
+(function () {
+  var btn = document.getElementById('menuBtn'), panel = document.getElementById('menu'),
+      scrim = document.getElementById('scrim'), close = document.getElementById('menuClose'), last;
+  if (!btn) return;
+  function open() {
+    last = document.activeElement;
+    panel.hidden = false; scrim.hidden = false;
+    requestAnimationFrame(function () { document.body.classList.add('menu-open'); });
+    btn.setAttribute('aria-expanded', 'true');
+    setTimeout(function () { close.focus(); }, 50);
+  }
+  function shut() {
+    document.body.classList.remove('menu-open');
+    btn.setAttribute('aria-expanded', 'false');
+    setTimeout(function () { if (!document.body.classList.contains('menu-open')) { panel.hidden = true; scrim.hidden = true; } }, 460);
+    if (last) last.focus();
+  }
+  btn.addEventListener('click', open);
+  close.addEventListener('click', shut);
+  scrim.addEventListener('click', shut);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && document.body.classList.contains('menu-open')) shut(); });
+  panel.addEventListener('click', function (e) { var a = e.target.closest('a'); if (a && a.getAttribute('href').charAt(0) === '#') shut(); });
+})();
+</script>
+<script>
+/* Ankieta „Jak szukasz pomocy” — edycja 1. Odpowiedzi trzymane tylko w pamięci strony do chwili wysłania. */
+(function () {
+  var END = Date.parse('2026-11-30T23:59:59+01:00');
+  var START = Date.parse('2026-10-21T00:00:00+02:00');
+  var G7 = ['1', '2', '3', '4–5', '6 lub więcej', 'Wciąż szukam', 'Nie dotyczy'];
+  var Q = {
+    q1: { s: 'Na start', t: 'one', q: 'Czy zdarzyło Ci się szukać pomocy psychiatry lub psychoterapeuty dla siebie?',
+      o: ['Tak, w ciągu ostatnich 2 lat', 'Tak, wcześniej', 'Nie, ale myślę o tym lub myślałem(-am)', 'Nie'] },
+    q2: { s: 'Na start', t: 'many', q: 'Co do tej pory Cię powstrzymywało?', h: 'Możesz zaznaczyć kilka.',
+      o: ['Nie wiem, do kogo się zgłosić', 'Koszt wizyt', 'Długie kolejki', 'Wstyd lub obawa przed oceną', 'Nie wierzę, że to pomoże', 'Wolę radzić sobie sam(a)', 'Nie potrzebowałem(-am)', 'Inne'] },
+    q3: { s: 'A. Pierwszy krok', t: 'one', q: 'Ile czasu minęło od pierwszych trudności do pierwszej wizyty u specjalisty?',
+      o: ['Mniej niż 3 miesiące', '3–12 miesięcy', '1–3 lata', 'Ponad 3 lata', 'Nie pamiętam'] },
+    q4: { s: 'A. Pierwszy krok', t: 'one', q: 'Do kogo trafiła Twoja pierwsza wizyta?',
+      o: ['Psychiatra', 'Psycholog', 'Psychoterapeuta', 'Lekarz rodzinny', 'Coach lub inna osoba', 'Nie wiem, kim była ta osoba'] },
+    q5: { s: 'B. Szukanie', t: 'many', q: 'Skąd brałeś(-aś) informacje przy wyborze specjalisty?', h: 'Możesz zaznaczyć kilka.',
+      o: ['Polecenie znajomych lub rodziny', 'Portal z opiniami (np. ZnanyLekarz)', 'Wyszukiwarka', 'Skierowanie lub poradnia NFZ', 'Lekarz rodzinny', 'Pakiet medyczny od pracodawcy', 'Media społecznościowe', 'Inne'] },
+    q6: { s: 'B. Szukanie', t: 'one', q: 'Gdzie odbywały się wizyty?',
+      o: ['Głównie NFZ', 'Głównie prywatnie', 'Głównie pakiet medyczny', 'Mieszanie tych form'] },
+    q7: { s: 'C. Kolejne próby', t: 'groups', q: 'U ilu różnych specjalistów byłeś(-aś) co najmniej raz, zanim trafiłeś(-aś) na osobę, z którą zostałeś(-aś)?',
+      g: [{ id: 'ter', l: 'Psychoterapeuci', o: G7 }, { id: 'psy', l: 'Psychiatrzy', o: G7 }] },
+    q8: { s: 'C. Kolejne próby', t: 'one', q: 'Ile czasu trwało szukanie od pierwszej wizyty do właściwej osoby?',
+      o: ['Do miesiąca', '1–3 miesiące', '3–6 miesięcy', '6–12 miesięcy', 'Ponad rok', 'Wciąż szukam'] },
+    q9: { s: 'C. Kolejne próby', t: 'one', q: 'Ile mniej więcej wydałeś(-aś) na wizyty, po których nie było dalszej współpracy?',
+      o: ['Nic', 'Do 500 zł', '500–1500 zł', '1500–3000 zł', 'Ponad 3000 zł', 'Wolę nie mówić'] },
+    q10: { s: 'C. Kolejne próby', t: 'one', q: 'Jeśli leczyłeś(-aś) się lekami: ile razy zmieniano lek lub dawkę, zanim poczułeś(-aś) poprawę?', h: 'Pytanie nieobowiązkowe.',
+      o: ['Nie dotyczy', 'Ani razu', '1–2 razy', '3–4 razy', '5 lub więcej', 'Wciąż szukamy', 'Wolę nie mówić'] },
+    q11: { s: 'C. Kolejne próby', t: 'one', q: 'Czy po nieudanej wizycie zdarzyło Ci się na dłużej przerwać leczenie?',
+      o: ['Nie', 'Tak, na kilka tygodni', 'Tak, na kilka miesięcy', 'Tak, na rok lub dłużej'] },
+    q12: { s: 'D. Dopasowanie', t: 'many', max: 3, q: 'Jeśli rezygnowałeś(-aś) ze specjalisty, co o tym zdecydowało?', h: 'Do 3 odpowiedzi.',
+      o: ['Nie czułem(-am) się wysłuchany(-a)', 'Nie pasował mi sposób rozmowy', 'Brak efektów', 'Cena', 'Terminy lub dojazd', 'Metoda lub nurt pracy', 'Za szybko lub za łatwo przepisane leki', 'Zachowanie, które uznałem(-am) za niestosowne', 'Nie rezygnowałem(-am)', 'Inne'] },
+    q13: { s: 'D. Dopasowanie', t: 'many', max: 3, q: 'Co jest dla Ciebie najważniejsze przy wyborze specjalisty?', h: 'Do 3 odpowiedzi.',
+      o: ['Doświadczenie z moim problemem', 'Sposób komunikacji', 'Kwalifikacje (np. certyfikat)', 'Cena', 'Szybki termin', 'Wizyty online lub stacjonarne', 'Płeć specjalisty', 'Wiek specjalisty', 'Nurt terapii', 'Opinie innych pacjentów'] },
+    q14: { s: 'D. Dopasowanie', t: 'scale', q: 'Na ile zgadzasz się ze zdaniem: „Przed pierwszą wizytą wiedziałem(-am), czego szukać w specjaliście”?' },
+    q15: { s: 'Twoimi słowami', t: 'text', q: 'Co najbardziej pomogłoby Ci szybciej trafić na właściwą osobę?', h: 'Pytanie otwarte, nieobowiązkowe. Nie podawaj nazwisk ani szczegółów, po których dałoby się Cię rozpoznać.' },
+    meta: { s: 'Na koniec', t: 'groups', q: 'Kilka informacji o Tobie', h: 'Wszystkie nieobowiązkowe. Pomogą porównać odpowiedzi różnych grup.',
+      g: [
+        { id: 'wiek', l: 'Wiek', o: ['18–24', '25–34', '35–44', '45–54', '55 lub więcej'] },
+        { id: 'plec', l: 'Płeć', o: ['Kobieta', 'Mężczyzna', 'Inna', 'Wolę nie podawać'] },
+        { id: 'miejsce', l: 'Miejsce zamieszkania', o: ['Wieś', 'Miasto do 50 tys.', '50–250 tys.', 'Ponad 250 tys.'] }
+      ] }
+  };
+  var YES = ['intro', 'q1', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10', 'q11', 'q12', 'q13', 'q14', 'q15', 'meta', 'end'];
+  var NO = ['intro', 'q1', 'q2', 'q15', 'meta', 'end'];
+
+  var body = document.getElementById('svBody'), bar = document.getElementById('svBar'),
+      count = document.getElementById('svCount'), card = document.getElementById('ankieta');
+  var st = { step: 0, consent: false, ans: {}, sending: false };
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function path() { var a = st.ans.q1; return (a === Q.q1.o[2] || a === Q.q1.o[3]) ? NO : YES; }
+  function id() { var p = path(); return p[Math.min(st.step, p.length - 1)]; }
+  function has(k) {
+    var v = st.ans[k];
+    if (v === undefined || v === null || v === '') return false;
+    if (Array.isArray(v)) return v.length > 0;
+    if (typeof v === 'object') return Object.keys(v).some(function (x) { return v[x]; });
+    return String(v).trim() !== '';
+  }
+
+  function optList(k, d) {
+    var type = d.t === 'one' ? 'radio' : 'checkbox', v = st.ans[k];
+    var h = '<div class="sv-opts' + (d.o.length > 7 ? ' two' : '') + '">';
+    d.o.forEach(function (o, i) {
+      var on = d.t === 'one' ? v === o : (v || []).indexOf(o) >= 0;
+      h += '<label class="sv-opt"><input type="' + type + '" name="' + k + '" value="' + i + '"' + (on ? ' checked' : '') + '><span>' + esc(o) + '</span></label>';
+    });
+    return h + '</div>';
+  }
+  function groups(k, d) {
+    var v = st.ans[k] || {}, h = '<div style="margin-top:18px">';
+    d.g.forEach(function (g) {
+      h += '<fieldset class="sv-group"><legend class="sv-glabel">' + esc(g.l) + '</legend><div class="sv-chips">';
+      g.o.forEach(function (o, i) {
+        h += '<label class="sv-chip"><input type="radio" name="' + k + '.' + g.id + '" value="' + i + '"' + (v[g.id] === o ? ' checked' : '') + '><span>' + esc(o) + '</span></label>';
+      });
+      h += '</div></fieldset>';
+    });
+    return h + '</div>';
+  }
+  function scale(k) {
+    var v = st.ans[k], h = '<div class="sv-scale" style="margin-top:18px"><div class="sv-chips">';
+    for (var n = 1; n <= 5; n++) h += '<label class="sv-chip"><input type="radio" name="' + k + '" value="' + n + '"' + (v === String(n) ? ' checked' : '') + '><span>' + n + '</span></label>';
+    return h + '</div><div class="sv-scale-ends" aria-hidden="true"><span>Zdecydowanie nie</span><span>Zdecydowanie tak</span></div></div>';
+  }
+
+  function render(focus) {
+    var p = path(), k = id(), d = Q[k], h = '';
+    var qs = p.filter(function (x) { return Q[x]; });
+    var qn = qs.indexOf(k) + 1;
+    bar.style.width = Math.round(st.step / (p.length - 1) * 100) + '%';
+    count.textContent = k === 'intro' ? 'Około 6 minut' : k === 'end' ? 'Gotowe' : k === 'meta' ? 'Na koniec' : 'Pytanie ' + qn + ' z ' + (qs.length - 1);
+
+    if (Date.now() > END) {
+      count.textContent = 'Zamknięta';
+      bar.style.width = '100%';
+      body.innerHTML = '<p class="sv-big" tabindex="-1">Edycja 1 jest zamknięta.</p><p>Dziękuję każdemu, kto odpowiedział. Wyniki opiszę w tym miejscu. <a href="#wyniki">Zostaw adres</a>, a dam znać, kiedy będą gotowe.</p>';
+      return;
+    }
+
+    if (k === 'intro') {
+      h = '<p class="sv-big" tabindex="-1">Zanim zaczniesz</p>' +
+        '<p>Około 6 minut. Każde pytanie możesz pominąć, a ankietę przerwać w dowolnym momencie. Odpowiedzi są anonimowe – dlatego po wysłaniu nie będę w stanie wskazać ani usunąć konkretnej z nich.</p>' +
+        '<label class="sv-consent"><input type="checkbox" id="svConsent"' + (st.consent ? ' checked' : '') + '><span>Mam ukończone 18 lat i zgadzam się na przetwarzanie moich anonimowych odpowiedzi, w tym informacji o zdrowiu, w celu opisanym na tej stronie. <a href="/prywatnosc/">Polityka prywatności</a></span></label>' +
+        '<div class="sv-nav"><span class="grow"></span><button class="btn solid" type="button" data-go="next"' + (st.consent ? '' : ' disabled') + '>Zaczynam →</button></div>';
+    } else if (k === 'end') {
+      h = '<div class="sv-end"><p class="sv-big" tabindex="-1">Dziękuję.</p>' +
+        '<p>To, co napisałeś(-aś), zostaje bez Twojego imienia i adresu. Wyniki opiszę zbiorczo w tym miejscu, kiedy zbierze się ich tyle, żeby nikogo nie dało się rozpoznać.</p>' +
+        '<p>Jeśli wypełnianie poruszyło coś trudnego, możesz zadzwonić pod <a href="tel:800702222">800 70 2222</a> lub <a href="tel:116123">116 123</a> (całą dobę). Najbliższą poradnię zdrowia psychicznego podpowie Telefoniczna Informacja Pacjenta: <a href="tel:800190590">800 190 590</a>.</p>' +
+        '<p>Jeśli chcesz opowiedzieć więcej, <a href="mailto:lukasz@40000steps.com?subject=Jak%20szukam%20pomocy%20%E2%80%93%20rozmowa">napisz do mnie</a> albo przyjdź na <a href="/spacery/">spacer</a>. Wiadomość nie łączy się z Twoimi odpowiedziami w ankiecie.</p></div>';
+    } else {
+      h = '<fieldset><legend class="sv-legend" tabindex="-1"><span class="sv-sec">' + esc(d.s) + '</span><span class="sv-q">' + esc(d.q) + '</span></legend>' +
+        (d.h ? '<p class="sv-hint">' + esc(d.h) + '</p>' : '');
+      if (d.t === 'one' || d.t === 'many') h += optList(k, d);
+      else if (d.t === 'groups') h += groups(k, d);
+      else if (d.t === 'scale') h += scale(k);
+      else if (d.t === 'text') h += '<label class="sv-text">Twoja odpowiedź<textarea id="svText" rows="6" maxlength="2000"></textarea></label>';
+      h += '</fieldset>';
+      if (k === 'meta') h += '<div class="sv-hp" aria-hidden="true"><label>Nie wypełniaj<input type="text" id="svHp" tabindex="-1" autocomplete="off"></label></div>';
+      var last = k === 'meta', any = has(k);
+      h += '<p class="note sv-msg" id="svMsg" role="status"></p>' +
+        '<div class="sv-nav"><button class="btn" type="button" data-go="back">← Wstecz</button>' +
+        '<button class="btn' + (any || last ? ' solid' : '') + '" type="button" data-go="next" id="svNext">' + (last ? 'Wyślij' : (any ? 'Dalej' : 'Pomiń')) + ' →</button></div>';
+    }
+    body.innerHTML = h;
+    var ta = document.getElementById('svText');
+    if (ta) ta.value = st.ans.q15 || '';
+    if (focus) {
+      var f = body.querySelector('[tabindex="-1"]');
+      if (f) f.focus({ preventScroll: true });
+      var r = card.getBoundingClientRect();
+      if (r.top < 0 || r.top > window.innerHeight * 0.6) card.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+    }
+  }
+
+  function refreshNext() {
+    var b = document.getElementById('svNext'); if (!b) return;
+    var k = id(), last = k === 'meta', any = has(k);
+    var qs = path().filter(function (x) { return Q[x]; });
+    if (Q[k] && !last) count.textContent = 'Pytanie ' + (qs.indexOf(k) + 1) + ' z ' + (qs.length - 1);
+    b.textContent = (last ? 'Wyślij' : (any ? 'Dalej' : 'Pomiń')) + ' →';
+    b.className = 'btn' + (any || last ? ' solid' : '');
+  }
+
+  body.addEventListener('change', function (e) {
+    var t = e.target, k = id(), d = Q[k], msg = document.getElementById('svMsg');
+    if (t.id === 'svConsent') { st.consent = t.checked; body.querySelector('[data-go="next"]').disabled = !t.checked; return; }
+    if (!d) return;
+    if (d.t === 'one') st.ans[k] = d.o[+t.value];
+    else if (d.t === 'scale') st.ans[k] = t.value;
+    else if (d.t === 'many') {
+      var sel = [].slice.call(body.querySelectorAll('input[name="' + k + '"]:checked')).map(function (x) { return d.o[+x.value]; });
+      if (d.max && sel.length > d.max) { t.checked = false; if (msg) msg.textContent = 'Możesz wybrać najwyżej ' + d.max + '.'; return; }
+      if (msg) msg.textContent = '';
+      st.ans[k] = sel;
+    } else if (d.t === 'groups') {
+      var parts = t.name.split('.'), g = d.g.filter(function (x) { return x.id === parts[1]; })[0];
+      st.ans[k] = st.ans[k] || {};
+      st.ans[k][parts[1]] = g.o[+t.value];
+    }
+    refreshNext();
+  });
+  body.addEventListener('input', function (e) {
+    if (e.target.id === 'svText') { st.ans.q15 = e.target.value; refreshNext(); }
+  });
+  body.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-go]'); if (!b || b.disabled) return;
+    if (b.getAttribute('data-go') === 'back') { st.step = Math.max(0, st.step - 1); render(true); return; }
+    if (id() === 'meta') return send(b);
+    st.step++; render(true);
+  });
+
+  function send(btn) {
+    if (st.sending) return;
+    var msg = document.getElementById('svMsg'), hp = document.getElementById('svHp');
+    var keep = path().filter(function (x) { return Q[x]; }), answers = {};
+    keep.forEach(function (k) { if (has(k)) answers[k] = st.ans[k]; });
+    if (!Object.keys(answers).length) { msg.textContent = 'Nie zaznaczyłeś(-aś) żadnej odpowiedzi. Jeśli chcesz, wróć do któregoś pytania.'; return; }
+    st.sending = true; btn.disabled = true; btn.textContent = 'Wysyłam…';
+    fetch('/api/ankieta', {
+      method: 'POST', headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ edition: 1, consent: st.consent, hp: hp ? hp.value : '', answers: answers })
+    }).then(function (r) { return r.json().then(function (d) { return { ok: r.ok && d.ok, d: d }; }); })
+      .then(function (r) {
+        if (!r.ok) throw (r.d && r.d.error) || 'error';
+        st.ans = {}; st.step = path().length - 1; render(true);
+      })
+      .catch(function (err) {
+        st.sending = false; btn.disabled = false; btn.textContent = 'Wyślij →';
+        msg.className = 'note sv-msg err';
+        msg.textContent = err === 'closed'
+          ? 'Ankieta jest już zamknięta. Dziękuję, że chciałeś(-aś) odpowiedzieć.'
+          : 'Nie udało się wysłać odpowiedzi. Spróbuj za chwilę – nic nie zginęło, dopóki nie zamkniesz strony.';
+      })
+      .then(function () { st.sending = false; });
+  }
+
+  if (Date.now() < START) { count.textContent = 'Wkrótce'; body.innerHTML = '<p>Ankieta ruszy 21 października.</p>'; return; }
+  render(false);
+})();
+</script>
+<script>
+/* Zapis na wiadomość o wynikach (MailerLite, ten sam formularz co na stronie głównej) */
+(function () {
+  var f = document.getElementById('ml-form'), msg = document.getElementById('ml-msg');
+  if (!f) return;
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = f.elements['fields[email]'].value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      msg.className = 'note err'; msg.textContent = 'Sprawdź, proszę, adres e-mail.'; return;
+    }
+    var btn = f.querySelector('button'); btn.disabled = true;
+    function done() {
+      f.reset(); f.style.display = 'none';
+      msg.className = 'note ok';
+      msg.textContent = 'Dziękuję. Sprawdź skrzynkę i potwierdź zapis — to jeden klik.';
+    }
+    function fail() {
+      msg.className = 'note err';
+      msg.textContent = 'Coś poszło nie tak. Spróbuj za chwilę albo napisz do mnie bezpośrednio.';
+    }
+    fetch(f.action, { method: 'POST', body: new FormData(f) })
+      .then(function (r) { return r.json(); })
+      .then(function (d) { if (d && d.success === false) throw 'rejected'; done(); })
+      .catch(function (e) {
+        if (e === 'rejected') return fail();
+        return fetch(f.action, { method: 'POST', mode: 'no-cors', body: new FormData(f) }).then(done, fail);
+      })
+      .finally(function () { btn.disabled = false; });
+  });
+})();
+</script>
+<div class="view-pop" id="viewPop" role="dialog" aria-label="Wygląd strony" hidden>
+  <fieldset>
+    <legend>Wygląd strony</legend>
+    <label><input type="radio" name="view" value="auto"><span class="vt">Automatycznie</span><span class="vs">Tak jak w ustawieniach telefonu lub komputera</span></label>
+    <label><input type="radio" name="view" value="light"><span class="vt">Jasny</span><span class="vs">Piasek i atrament, na dzień</span></label>
+    <label><input type="radio" name="view" value="night"><span class="vt">Nocny</span><span class="vs">Ciemne tło, łagodniejsze dla oczu po zmroku</span></label>
+    <label><input type="radio" name="view" value="contrast"><span class="vt">Wysoki kontrast</span><span class="vs">Biel na czerni, największa czytelność</span></label>
+  </fieldset>
+</div>
+<script>
+(function () {
+  var root = document.documentElement, btn = document.getElementById('viewBtn'),
+      pop = document.getElementById('viewPop'), meta = document.querySelector('meta[name="theme-color"]');
+  if (!btn) return;
+  var colors = { light: '#0f1a2b', night: '#121924', contrast: '#000000' };
+  var mq = function (q) { return window.matchMedia ? matchMedia(q) : { matches: false, addEventListener: function () {} }; };
+  var dark = mq('(prefers-color-scheme: dark)'), more = mq('(prefers-contrast: more)'), forced = mq('(forced-colors: active)');
+  function pref() { try { return localStorage.getItem('view') || 'auto'; } catch (e) { return 'auto'; } }
+  function apply(p) {
+    var t = p !== 'auto' ? p : (more.matches || forced.matches) ? 'contrast' : dark.matches ? 'night' : 'light';
+    root.setAttribute('data-theme', t); root.setAttribute('data-view', p);
+    if (meta) meta.setAttribute('content', colors[t]);
+    var r = pop.querySelector('input[value="' + p + '"]'); if (r) r.checked = true;
+  }
+  [dark, more, forced].forEach(function (m) { if (m.addEventListener) m.addEventListener('change', function () { if (pref() === 'auto') apply('auto'); }); });
+  pop.addEventListener('change', function (e) {
+    if (e.target.name !== 'view') return;
+    try { localStorage.setItem('view', e.target.value); } catch (err) {}
+    apply(e.target.value);
+  });
+  function open() { pop.hidden = false; btn.setAttribute('aria-expanded', 'true'); (pop.querySelector('input:checked') || pop.querySelector('input')).focus(); }
+  function shut(back) { pop.hidden = true; btn.setAttribute('aria-expanded', 'false'); if (back) btn.focus(); }
+  btn.addEventListener('click', function () { pop.hidden ? open() : shut(); });
+  document.addEventListener('click', function (e) { if (!pop.hidden && !pop.contains(e.target) && !btn.contains(e.target)) shut(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !pop.hidden) shut(true); });
+  apply(pref());
+})();
+</script>
+</body>
+</html>
